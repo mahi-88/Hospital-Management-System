@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<style>
+   body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main {
+        background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQDw0PDxIQDw8PDw8NDw8PEhUPDw0NFRUWFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFxAQFisdHR0rKy0tLS0rKystLS0tLSsrKy0tLSs3LS0tLS0tKzgvKy0rLS0tKy0tNy0tLS02LS0tK//AABEIALgBEgMBIgACEQEDEQH/xAAbAAADAQEBAQEAAAAAAAAAAAABAgMABAYHBf/EADwQAAIBAgIGBggEBgMBAAAAAAABAgMREiEEMUFRUqEFE2FxkaIGFCJCgZKx0TLB4fAHU2JygvEjc9Ik/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAhEQEAAgAFBQEAAAAAAAAAAAAAARECEhMhYQMUMVFxQf/aAAwDAQACEQMRAD8A+hKA2A6FSG6o6vPTlwmws6nSN1YWnI4MRwOx0xHDsA4pQEcTrlATA2VHLYFiziDCBEBZxYMJJWETIrhBhCkNYpgMqbIEsNhsh1GwrQVOxrFFA2ACdjWKYDOIEnERou4iOIVFoMLbSjgI4kRNi2KNAsBNo2AphGwBUHEnKJ1OAsqZFcM4kpxO2dIjOmBGMcl3GLRjkjEae4UA4CkYhsbckXA2AthDhA53AR0zrcRXEFOOVMnKnY7ZRJSiBwdWK6Z2OAjgVHK6QOqOnAbCByukDAdLiLhCudoKL4VuBhQELAsXcEDCiCCRrFkkbCFtKwGi2EFgIWA4l3ESUQINAwlnEDiBHCDCWsCwEXANijRsJBKxsFy2AWbWpAc0kRnE6pIjNBUVExRIxGntYhAhisKRiLKA8ByNOcDRaUSbQSk5IlJF2JJGkc7iI4lmibRUTaA0O0CwE2hbFGhbALYDRQAE7AsUA0BJow0kAgUKQ1hWwEYkh2K0CyAsPYFgpLGsPYWwCsMUBoAGk9gjHYjCpyIzZaSIzIhUEyRiNPZRYyETGTNMrwHJQkUMtCLJBMFRlEmzpZOcCwzMOZomyskI0VlNgGaFZQjAMxQAAa4LgKBhYAFbMmFgADYrGAQIKylhbAJY1h7GaAnYVlGgNBUmAeSM0BNiNlZInICciUy0iUwEQBkAivXIZCJjJlZWihlK2sEBiNmTMT1DKRAzFCABJxuc84HUJMqTDkYjRWSJyKyRoUZgKACw1wAK0BoZgARoDGYAFsBoZgYCsUdgIAwJD2M3uASSEaHYrCpyM0MzMCTQjRVk2BKSJtXKSJSAdUu/wMImYivVIZCxGRWVqbKEEmUjIjUScDRgkUqlvGuK0LmihhZ6gpiTBKZpwuBDhlyzjYQ65IjKBbRI1hmhWUK2KxmABTGZgMA1zABgQWBkBkKzAuBhWFsVhSszBJmYCyEkM2TkwEkRmVkyM2AtzARiK9bEZCxHRWVYBcQQHI3BE7DJmaEaCeFAMVSNcLZJLcJKZRslVDJYvMe5BSsUxFQWzAuC4pQnEhJHQxZRCOdsFxpwJMoLYLi3NcBrmuADANxWw3FbANwXBc1yDNithbEbAEmBsDuZyt/oBZk3I+bfxA6Rrx0+EadSdNUqUJQUW4rrPam5W2t4bZ7j2/QfSPrOjUK+Sc4e0lqU1lK3xTMYepE4pw+kd0mRmxpSJSkbUUYmmYivZRGEixiotCQ5KKDexGok7ABMILLKIuKw7Ykio2InUYsk1qElMUltEzTWoEEOVCxnca5OURYztkwtrXAC5iAMlOBVisDlkgJHRKBOcdxUI2YFjWBbMWQWJIFiABgWzAYVgapbYed6c9LdF0OoqVZ1cbip2hTlJKL231PVsufvyOTpDo+jXjhrU4VYrNYldxe9PWn3Em62WK/Xzf0l07RdP0nRquiVVKsnTpTpVIzoupBSusLmkm0pTTV7vK1z9DRumJ9H6HT0dQ6zSY3nOKvKFBTk3FTcfes1lfafken3o9T0SVOdKMXRrNxUHj62lUir3Ur+0v7s/wAp+kfTDfq8IZpUlNrVB15Nuc5JfilbCs9Weu55JuMUz4luMMeYe16D6dWlRzi4zirzwqTpxzyWNrN2zsj9GUzzXoRXT0XC6salTHKo6aknKjB2UVZal7Lf+R+5KR6sF5YtifK2MxzYzBp76LHTOdTHUysuuDC2ShIbEFZrcZTBiFk0EUuBsi52CqqLSWcnUgg4idSYJaLHuiUZJgk7aisxKrEaEVZDKaIthqHUkxcQsnuAoxWT67eFzC2LkKxcZsQLK0IyjYrCJtiSY00SbKg3CmJcNwC2hWwAYUJM+b+mnp3Wp16mi6ElB059VOq4qpUlV2qnF5KzyzTu14/RpHzX0yqr1uWjaDShCu5X0idKP/1Vak1iajNLFFWkm2tbedks+fUmYjZvBVunoTo7pPTIRXSNno+JVYOqlR0qMlwYI5JptPEtTysdOj+itF6TXvGmqNOSj1Tp45O8IySVR54c92u+YPRP0FlQktI0irVVT8XV06koJf8AZOL9ruvbvPN6N6X6WtLqRhKE46RUdKnGsrwptzcaTxL2slZO7ZiYiozQ3c7097S6OoUc6VOFN2w3jFJuOu19wJs8U/SPpGlWlS0mKU1m6U6aScd8XHWu1No9j0dpKrUlVSad3GUNbhNa1fwN4Zw+IYmJ/VFS7eTMP7W4wV9AjTg/d5sZ0YcPNjRgtluf3HSX7ucI6rvpJKMVqXNhy3c2VSj2cxlCO5czWommjhW7mzYY7ubLYY7lzBhW76jUMiWCO7mxeqhw82XwLcvFiyjHdzGoaZMEOHmxXTp8PNj4Fu8GzKEex9zuTVNJNU6a93zMOCnw82GooRV2vqc3rEW7Ri29+xcyT1ljo8LOjS4fMzKnT4fMwqnHb9WNhhu8GXVTS4Jhhw+Zmww4fMwSgs7LLZe+sSnSe3C+z2iay6RnTpv3PMzKnT4fMxnGO63iFqO76jWNImCnw+Zmap8PmYXh4ecvsSlDdktzu/yE9ZY6J/Y4ebN7HDzZGaXYvm+xFwvqkvNf6Gdf6uj8dfscK8WK4U+DzM5VRlxR8JmlTlscb/5jX+mh8dTp0+HmwdXT4fMzh6uS1yXnYbN7V3pyt9R3H1e3+O3q6XB5mbq6XB5mcDpT2PnL7mdOp2+Lf5k7mOV7b47urpcHmYkdHoJykqcVKVsUllKVsld7TgeJa1N92duYrr52vG+6blBv4tW5juY5O2nh+pU6L0fSqVShVhenKzaUmndandHyCj/D+vPpaWiRhJUKFZ1J6S03CGj4nOFnknNpxVt99iPrXQ+kSVT2opRknHEpqaT1rV+8z92pUsjcTGOLYxYZwbPn8/4f6NTnGcp1Jxi8XVSUMEn/AFN3erdYto+gaNQUo0qeGMpYmscnZ2Syu8llqOv0u6ZVKlOV87NQivxSlsSPG0NNqVVe9aPys558PT8Omni6m8vUXpcC+ZmPw1otTL/ml4L7GJ3H1e2+PpKb3fQ1pPsHsYZUsEuzxHuxVb93GT/eZqIRrvsBdjCSlbUrvvyFJYOmnr+or0eIYxnta7kvzKqG+xMvC5q/UlC2SdhHfeWcV2GUF2EyraNpcQJqRSq5ZYMPa2Z3srvwVrkyraEXLs8QSqta3Fd8rXOlU2Zx7myZZXNDmlUnsw/MJ1srpWy32btzOrqndN/6J+25NWjh4v0MzhlYmBhGTzuvBhcZb4+H6jQhbat40mbpm0JYt6+5PHm7trs2eJ0yzW7uyZzVFZ+17XwzsYxRP41hmDJLfdd9jXWtXfMVRU/w4ZYcnaSvF7nmI6VVP3Wv7kmTf0uys4rXzWzwJun237doP+VP3bf3L7lqct9r700Tyvhyy0e+1/G5JxqR2NpZ778j9Cor6mvpzNBNe8vG/wBS5UzPy6XSSeK6wWybkmku97C3WT1xWNf02Z1VqGLXKPIj6k1qa+F1+ZJiWrhJ1sWUqdT5H9QqzySmlulGX53KTpVtko/FMhLR9I2VIp/2t/mTdYppaDF5uEL78NvoTlodlZSnFcKqSwr4D+q6R/Mj8oPVtI/mQ+Vjf0u3twz6JpyeKcYylxP2pP4tAfR8UrJRXeo/Y7JaNpP8yj8YS1fBkpaHpG2dF/4szMcNRPLm9Ue6n4x/8mOj1StxUPll9wGan0t8vR27TGMe14wxoKf+jGJE2sxQqXx7BsT7jGFpQuSQMdzGEzutbDYlOrnhXxf5AMJkiAxbbjUpXzMYze61sd1LEoVVi1tu/IxhOLcjDFGlUbi29X0QlOatrQTGb3aiNgdt6z/qM5Rtrj8xjEtaHGt8fEnKrHfD5v0MYs4iMJG6etuPj+guOjxLxMYzMtRHJXGjxedgdOgvets/GzGJt6N/Zo9Uvf8AGQ7qUl76+LMYtmXlpVKfEvmsSlXpLNzitmcsgmJMrGEyq07Xxqz2p5C9dT414/oYxbMputhxrxQHWhxrx/QJhZlZVo7Jp/EWVVcS+pjGZkyk6xb+X6GMYlt5Yf/Z);
+        padding: 20px;
+        height: 74vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .sub {
+        padding: 10px;
+        margin: 10px;
+        float: right;
+        width: 40%;
+    }
+
+    .sum {
+        text-align: center;
+        padding: 10px;
+        margin: 10px;
+        width: 40%;
+    }
+
+    .main1 {
+        text-align: center;
+        background-color: white;
+    }
+
+    .main3 {
+        background-image: url(https://www.shutterstock.com/image-photo/doctor-doing-homecare-inspection-house-260nw-2106892832.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 50vh;
+    }
+
+    .main4 {
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdvNjUvZw0E29b4rT0kV7_2Rk5CvqZIxL1-kqywV2_6auOuO_69pdBB828YNMowbEd2XI&usqp=CAU);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 30vh;
+    }
+
+
+    @media only screen and (max-width: 768px) {
+        .main {
+            height: 70vh;
+        }
+
+        .sub {
+            width: 80%;
+            margin: 10px auto;
+        }
+
+        .sum {
+            width: 80%;
+            margin: 10px auto;
+        }
+
+        .main1 {
+            padding: 20px;
+        }
+        .main3 .hfg li,h1{
+            text-align: left;
+            
+        }
+        
+
+        .main4 {
+            padding: 20px;
+        }
+    }
+    .main form{
+        width: 300px;
+        height: 70vh;
+        margin-left: 27%;
+    }
+
+ 
+</style>
+
+<body>
+    <div class="main" style="margin-top: 18vh;">
+        <div class="sub">
+            <h1 style="margin-left: 27%;">Contact Form</h1>
+            <form id="form">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name*" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Mobile No.*" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                </div>
+                
+                <div class="form-group">
+                    <select class="form-control" id="country" name="country" required>
+                        <option value="" disabled selected>Select your country</option>
+                        <option value="USA">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="department" name="department" placeholder="Select Department*" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="message" name="message" placeholder="Message" rows="4" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" href="index.html">Submit</button>
+            </form>   
+        </div>
+        <div class="sum" style="margin-top: 2%;">
+            <h2>EXPERT DOCTOR VISIT<br>AT HOME.</h2>
+            <img src="home-visit-removebg-preview.png" alt="" height="335vh">
+        </div>
+    </div>
+
+    <div class="main3">
+        <div class="hfg" style="margin-left: 60%;">
+            <h4>Our Doctor at Home Service Encompasses:</h4>
+            <ul>
+                <li>Expert medical consultation & supervision</li>
+                <li>Personalised healthcare for you and your family</li>
+                <li>Nurse and physician visits whenever required</li>
+            </ul>
+        </div>
+    </div>
+    <div class="main4">
+        <h3 style="margin-left: 60%; padding-top: 3%;">Benefits of Doctor Consultation at Home:</h3>
+        <ul style="margin-left: 60%;">
+            <li>Reduced health hazards</li>
+            <li>Undivided attention from care providers</li>
+            <li>Convenience for patients & families</li>
+        </ul>
+    </div>
+
+    
+    <script>
+                
+        document.getElementById("form").addEventListener("submit", function(event) {
+        const name = document.getElementById("name");
+        const phone = document.getElementById("phone");
+        const email = document.getElementById("email");
+        const country = document.getElementById("country");
+        const department = document.getElementById("department");
+        const message = document.getElementById("message");
+        
+        let isValid = true;
+        
+      
+        if (!isValidName(name.value.trim())) {
+            isValid = false;
+            name.classList.add("is-invalid");
+        } else {
+            name.classList.remove("is-invalid");
+        }
+        
+      
+        if (!isValidPhoneNumber(phone.value.trim())) {
+            isValid = false;
+            phone.classList.add("is-invalid");
+        } else {
+            phone.classList.remove("is-invalid");
+        }
+        
+       
+        if (!isValidEmail(email.value.trim())) {
+            isValid = false;
+            email.classList.add("is-invalid");
+        } else {
+            email.classList.remove("is-invalid");
+        }
+        
+        if (country.value === "") {
+            isValid = false;
+            country.classList.add("is-invalid");
+        } else {
+            country.classList.remove("is-invalid");
+        }
+
+        if (department.value.trim() === "") {
+            isValid = false;
+            department.classList.add("is-invalid");
+        } else {
+            department.classList.remove("is-invalid");
+        }
+        
+        if (message.value.trim() === "") {
+            isValid = false;
+            message.classList.add("is-invalid");
+        } else {
+            message.classList.remove("is-invalid");
+        }
+        
+        if (!isValid) {
+            event.preventDefault();
+        } else {
+            alert("Form submitted successfully!");
+        }
+    });
+
+    function isValidName(name) {
+        const namePattern = /^[A-Za-z\s]+$/;
+        return namePattern.test(name);
+    }
+
+    function isValidPhoneNumber(phone) {
+        const phonePattern = /^\d{10}$/;
+        return phonePattern.test(phone);
+    }
+
+    function isValidEmail(email) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    }
+        
+        
+</script>
+</body>
+
+
+</html>

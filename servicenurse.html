@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Div with Sub Divs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        nav{
+    top: 0;
+    position: fixed;
+    display: flex;
+   width: 100%;
+   height: 18vh;
+   background-color: #fff;
+   z-index: 999; 
+}
+nav ul {
+    display: flex;
+    margin: 0.2%;
+    list-style-type: none;
+    padding: 1%;
+    margin-top: 3%;
+}
+
+nav ul a{
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul a:hover{
+    color: rgb(30, 138, 30);
+    text-decoration: underline;
+}
+
+nav a {
+    color: rgb(8, 8, 8);
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 15px;
+
+}
+
+nav .logo{
+    padding-right: 4%;
+    width: 85%;
+    height: 18vh;
+    cursor: pointer;
+}
+
+.search{
+    margin-top: 4%;
+    margin-left: 11%;
+    
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            background-image: url(https://apollohomecare.com/wp-content/uploads/2020/01/nah-2.jpg);
+            padding: 20px;
+            height: 74vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .main form{
+            width: 300px;
+            height: 50vh;
+            margin-left: 27%;
+        }
+
+        .sub {
+            padding: 10px;
+            margin: 10px;
+            float: right;
+            width: 40%;
+        }
+        .main1 {
+            display: flex;
+            width: 100%;
+            height: 70vh;
+            
+           
+        }
+
+        .main12{
+            background-color: #86E5FF;
+            width: 40%;
+        }
+        .main12 li,h3{
+            padding-left: 2%;
+        }
+        .main h2{
+            margin-top: 2%;
+        }
+
+        .main13{
+            background-color: skyblue;
+            
+            width: 60%;
+        }
+        .main13 li{
+             text-align: left;
+             margin-left: 13%;
+        
+        }
+        .main13 h2{
+            text-align: center;
+            margin-right: 5%;
+        }
+
+        .main13 table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .main13 th,
+        .main13 td {
+            padding: 10px;
+            text-align: center;
+        }
+        .main12  li{
+            padding:2%;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .main {
+                height: 70vh;
+            }
+
+            .sub,
+            .sum,
+            .main12,
+            .main13 {
+                width: 90%;
+                margin: 10px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div >
+          <img class="logo" src="health website.jpg"  alt="logo">
+        </div>
+        <ul>
+          <li><a href="index.html" >Home</a></li>
+          <li><a href="index.html#services ">Services</a></li>
+          <li><a href="doctors2.0.html" target="_blank">Doctors</a></li>
+          <li><a href="aboutus.html" target="_blank">About us</a></li>
+    
+          </ul>
+          <div class="search">
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                
+              </form>
+          </div>
+      </nav>
+    <div class="main" style="margin-top: 18vh;">
+        <div class="sub">
+            <h1 style="margin-left: 25%;">Contact Form</h1>
+            <form id="myForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name*" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone No.*" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                </div>
+                
+                <div class="form-group">
+                    <select class="form-control" id="country" name="country" required>
+                        <option value="" disabled selected>Select your country</option>
+                        <option value="USA">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nursingServices" name="nursingServices" placeholder="Select Nursing Services*" required>
+                </div>
+                
+                <div class="form-group">
+                    <textarea class="form-control" id="message" name="message" placeholder="Message" rows="4" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="main1">
+        <div class="main12">
+            <h3 style="padding-top: 6%;">Long Term Nursing Care Services at Home</h3>
+            <ul>
+                <li>Personal care attendant</li>
+                <li>Home health attender</li>
+                <li>Basic care nursing</li>
+                <li>Specialty Nursing care</li>
+                <li>Critical nursing care</li>
+                <li>Tracheostomy nursing care</li>
+                <li>Mother and Baby Care / Nanny Care</li>
+            </ul>
+        </div>
+        <div class="main13" style="padding-top: 2%;">
+            <h2>Nursing Services</h2>
+            <table>
+                <tr>
+                    <th style="padding-left: 4%;">Basic Nursing Visit</th>
+                    <th style="padding-right: 9%;">Nursing Procedures</th>
+                    <th style="padding-right: 4%;">Wellness services</th>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Vitals Check</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Postoperative wound dressing</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Lactation Nurse consultation</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Nebulization</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Foley catheter insertion</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Vaccinations</li>
+                        </ul>
+                    </td>
+                   
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Enema</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Ryles tube insertion & removal</li>
+                        </ul>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Sitz bath</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Colostomy & other ostomy applications</li>
+                        </ul>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Fetal monitoring</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>ABG collection service</li>
+                        </ul>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>ECG monitoring etc</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Wound Vacs</li>
+                        </ul>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+        const name = document.getElementById("name");
+        const phone = document.getElementById("phone");
+        const email = document.getElementById("email");
+        const country = document.getElementById("country");
+        const nursingServices = document.getElementById("nursingServices");
+        const message = document.getElementById("message");
+        
+        let isValid = true;
+        
+       
+        if (!isValidName(name.value.trim())) {
+            isValid = false;
+            name.classList.add("is-invalid");
+        } else {
+            name.classList.remove("is-invalid");
+        }
+        
+        
+        if (!isValidPhoneNumber(phone.value.trim())) {
+            isValid = false;
+            phone.classList.add("is-invalid");
+        } else {
+            phone.classList.remove("is-invalid");
+        }
+        
+     
+        if (!isValidEmail(email.value.trim())) {
+            isValid = false;
+            email.classList.add("is-invalid");
+        } else {
+            email.classList.remove("is-invalid");
+        }
+        
+        if (country.value === "") {
+            isValid = false;
+            country.classList.add("is-invalid");
+        } else {
+            country.classList.remove("is-invalid");
+        }
+
+        if (nursingServices.value.trim() === "") {
+            isValid = false;
+            nursingServices.classList.add("is-invalid");
+        } else {
+            nursingServices.classList.remove("is-invalid");
+        }
+        
+        if (message.value.trim() === "") {
+            isValid = false;
+            message.classList.add("is-invalid");
+        } else {
+            message.classList.remove("is-invalid");
+        }
+        
+        if (!isValid) {
+            event.preventDefault();
+        } else {
+          
+            alert("Form submitted successfully!");
+        }
+    });
+
+    function isValidName(name) {
+        
+        const namePattern = /^[A-Za-z\s]+$/;
+        return namePattern.test(name);
+    }
+
+    function isValidPhoneNumber(phone) {
+        
+        const phonePattern = /^\d{10}$/;
+        return phonePattern.test(phone);
+    }
+
+    function isValidEmail(email) {
+        
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Test Appointment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 100%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+     }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Lab Test Appointment</h2>
+        <div class="col-md-6">
+            <form id="myForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" pattern="[A-Za-z]+" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number" required>
+
+            <label for="labtest">Select Lab Test:</label>
+            <select id="labtest" name="labtest" required>
+                <option value="urea_cre">Urea and Creatinine</option>
+                <option value="cbc">Complete Blood Count</option>
+                <option value="lipid">Lipid Profile</option>
+                <option value="uric_acid">Uric Acid - Serum</option>
+                <option value="Sensivity_urine">Culture And Sensivity Urine</option>
+                <option value="liver_test">Liver Function test</option>
+                <option value="vitamin_check">Xpert Vitamin Check</option>
+                <option value="Glucose">Glucose Fasting and Pp</option>
+                <option value="senior_male">Xpert Health Senior citizen - Male</option>
+                <option value="Health_basic">Xpert Health Basic</option>
+                <option value="Comprehensive">Xpert Health Comprehensive</option>
+                <option value="Screening">Xpert Health Screening</option>   
+            </select>
+            <label for="date">Preferred Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18"  required>
+              
+            
+            <label for="comments">Comments / Requirements:</label>
+            <textarea id="comments" name="comments" rows="4"></textarea>
+
+    
+
+                <button type="submit">Book Lab Test</button>
+            </form>
+        </div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById("myForm");
+        const nameInput = document.getElementById("name");
+        const phoneInput = document.getElementById("phone");
+        const ageInput = document.getElementById("age");
+        const commentsInput = document.getElementById("comments");
+        const phonePattern = /[0-9]{10}/;
+        const phoneError = "Please enter a valid 10-digit phone number.";
+        const ageError = "Age must be 18 or older.";
+        const commentsError = "Please provide your comments or requirements.";
+        const messageDiv = document.getElementById("message");
+
+        form.addEventListener("submit", function(event) {
+            let isValid = true;
+
+            if (!nameInput.value.match(/^[A-Z a-z ]+$/)) {
+                showMessage("Name should only contain alphabets.", "error");
+                isValid = false;
+            }
+
+            if (!phonePattern.test(phoneInput.value)) {
+                showMessage(phoneError, "error");
+                isValid = false;
+            }
+
+            if (parseInt(ageInput.value) < 18) {
+                showMessage(ageError, "error");
+                isValid = false;
+            }
+
+           
+
+            if (isValid) {
+                showMessage("Submitted successfully!", "success");
+            }
+
+            if (!isValid) {
+                event.preventDefault(); 
+            }
+        });
+
+        function showMessage(message, type) {
+            messageDiv.textContent = message;
+            messageDiv.className = type;
+        }
+    </script>
+ </body>
+</html>

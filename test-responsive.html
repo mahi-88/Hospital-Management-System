@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Test - Health Care Hospital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .test-title {
+            color: #2563eb;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .test-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 3px;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status.pass {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .device-frame {
+            border: 2px solid #333;
+            border-radius: 10px;
+            margin: 10px;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        .device-frame iframe {
+            border: none;
+        }
+        
+        .mobile {
+            width: 375px;
+            height: 667px;
+        }
+        
+        .tablet {
+            width: 768px;
+            height: 1024px;
+        }
+        
+        .desktop {
+            width: 1200px;
+            height: 800px;
+        }
+        
+        .test-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .test-button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Hospital Website Responsive Testing</h1>
+        <p>Use this page to test the responsiveness of your hospital website across different devices and screen sizes.</p>
+        
+        <div class="test-section">
+            <h2 class="test-title">Quick Device Tests</h2>
+            <button class="test-button" onclick="openInFrame('index.html', 'mobile')">Test Mobile (375px)</button>
+            <button class="test-button" onclick="openInFrame('index.html', 'tablet')">Test Tablet (768px)</button>
+            <button class="test-button" onclick="openInFrame('index.html', 'desktop')">Test Desktop (1200px)</button>
+            <button class="test-button" onclick="window.open('index.html', '_blank')">Open Full Site</button>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">Page Tests</h2>
+            <div class="test-item">
+                <strong>Homepage (index.html)</strong>
+                <span class="status pending" id="home-status">PENDING</span>
+                <button class="test-button" onclick="testPage('index.html', 'home')">Test</button>
+            </div>
+            <div class="test-item">
+                <strong>Appointment Page</strong>
+                <span class="status pending" id="appointment-status">PENDING</span>
+                <button class="test-button" onclick="testPage('appointment.html', 'appointment')">Test</button>
+            </div>
+            <div class="test-item">
+                <strong>Cardiology Department</strong>
+                <span class="status pending" id="cardiology-status">PENDING</span>
+                <button class="test-button" onclick="testPage('cardiology.html', 'cardiology')">Test</button>
+            </div>
+            <div class="test-item">
+                <strong>Doctors Page</strong>
+                <span class="status pending" id="doctors-status">PENDING</span>
+                <button class="test-button" onclick="testPage('doctors2.0.html', 'doctors')">Test</button>
+            </div>
+            <div class="test-item">
+                <strong>About Us Page</strong>
+                <span class="status pending" id="about-status">PENDING</span>
+                <button class="test-button" onclick="testPage('aboutus.html', 'about')">Test</button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">Responsive Checklist</h2>
+            <div class="test-item">
+                <input type="checkbox" id="nav-mobile"> Navigation works on mobile devices
+            </div>
+            <div class="test-item">
+                <input type="checkbox" id="forms-mobile"> Forms are usable on mobile
+            </div>
+            <div class="test-item">
+                <input type="checkbox" id="images-responsive"> Images scale properly
+            </div>
+            <div class="test-item">
+                <input type="checkbox" id="text-readable"> Text is readable on all devices
+            </div>
+            <div class="test-item">
+                <input type="checkbox" id="buttons-clickable"> Buttons are easily clickable
+            </div>
+            <div class="test-item">
+                <input type="checkbox" id="layout-intact"> Layout doesn't break on small screens
+            </div>
+            <div class="test-item">
+                <input type="checkbox" id="performance-good"> Page loads quickly on mobile
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">Browser Compatibility</h2>
+            <div class="test-item">
+                <input type="checkbox" id="chrome"> Chrome
+            </div>
+            <div class="test-item">
+                <input type="checkbox" id="firefox"> Firefox
+            </div>
+            <div class="test-item">
+                <input type="checkbox" id="safari"> Safari
+            </div>
+            <div class="test-item">
+                <input type="checkbox" id="edge"> Microsoft Edge
+            </div>
+        </div>
+        
+        <div id="test-frame-container" style="margin-top: 20px;"></div>
+    </div>
+    
+    <script>
+        function openInFrame(url, deviceType) {
+            const container = document.getElementById('test-frame-container');
+            container.innerHTML = `
+                <h3>Testing: ${url} on ${deviceType}</h3>
+                <div class="device-frame ${deviceType}">
+                    <iframe src="${url}" class="${deviceType}"></iframe>
+                </div>
+            `;
+        }
+        
+        function testPage(url, pageId) {
+            const statusElement = document.getElementById(pageId + '-status');
+            statusElement.textContent = 'TESTING...';
+            statusElement.className = 'status pending';
+            
+            // Simulate testing
+            setTimeout(() => {
+                // Check if page exists
+                fetch(url)
+                    .then(response => {
+                        if (response.ok) {
+                            statusElement.textContent = 'PASS';
+                            statusElement.className = 'status pass';
+                        } else {
+                            statusElement.textContent = 'FAIL';
+                            statusElement.className = 'status fail';
+                        }
+                    })
+                    .catch(() => {
+                        statusElement.textContent = 'FAIL';
+                        statusElement.className = 'status fail';
+                    });
+            }, 1000);
+            
+            // Open page in new tab for manual testing
+            window.open(url, '_blank');
+        }
+        
+        // Auto-save checklist state
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                localStorage.setItem(this.id, this.checked);
+            });
+            
+            // Load saved state
+            const saved = localStorage.getItem(checkbox.id);
+            if (saved === 'true') {
+                checkbox.checked = true;
+            }
+        });
+        
+        // Generate test report
+        function generateReport() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const total = checkboxes.length;
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const percentage = Math.round((checked / total) * 100);
+            
+            alert(`Test Progress: ${checked}/${total} (${percentage}%) completed`);
+        }
+        
+        // Add report button
+        const reportButton = document.createElement('button');
+        reportButton.textContent = 'Generate Report';
+        reportButton.className = 'test-button';
+        reportButton.onclick = generateReport;
+        document.querySelector('.test-container').appendChild(reportButton);
+    </script>
+</body>
+</html>

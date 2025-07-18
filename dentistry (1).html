@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </head>
+<title>Dentistry</title>
+<style>
+    h2{text-align: center;font-family: calibri;}
+    p{text-align: left;font-family: calibri;}
+    pre{font-family: calibri;}
+    .container {
+      
+      flex-wrap: wrap;
+      display: flex;
+      flex-wrap: wrap;
+      padding:30px;
+      background: linear-gradient(to right, rgba(131, 169, 190, 0.8) 0%, rgba(23, 131, 137, 0) 400%);
+      
+    }
+    
+    .item {
+      flex-basis: 50%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    .item .image {
+      margin-right: 20px;
+      padding:1px;
+      
+      
+    }
+    .item .text {
+      font-size: 14px;
+      padding:5px;
+      
+    }
+    .btn a{
+   text-decoration: none;
+   color:black;
+}
+.btn:hover{
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
+}
+.btn{
+  background-color: #F6F1E9;
+  width:40%;
+  height:5vh;
+}
+.dept .btn:hover{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+.nephro{
+  width:100%;
+  height:80vh;
+  font-size: large;
+  background-color: rgb(215, 227, 227);
+  
+}
+.nephro p{
+  text-align: left;
+   margin-left: 4%;
+   margin-top: 6%;
+}
+.nephro h2{
+  text-align: center;
+}
+.nephro img{
+  float: right;
+
+}
+nav{
+    top: 0;
+    position: fixed;
+    display: flex;
+   width: 100%;
+   height: 18vh;
+   background-color: #fff;
+   z-index: 999; 
+}
+nav ul {
+    display: flex;
+    margin: 0.2%;
+    list-style-type: none;
+    padding: 1%;
+    margin-top: 3%;
+}
+
+nav ul a{
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul a:hover{
+    color: rgb(30, 138, 30);
+    text-decoration: underline;
+}
+
+nav a {
+    color: rgb(8, 8, 8);
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 15px;
+
+}
+
+nav .logo{
+    padding-right: 4%;
+    width: 85%;
+    height: 18vh;
+    cursor: pointer;
+}
+
+.search{
+    margin-top: 4%;
+    margin-left: 11%;
+    
+}
+
+    
+    
+</style>
+
+<body>
+  
+  <script id="replace_with_navbar" src="nav.js"></script>
+  
+  <div class="nephro" style="margin-top: 18vh;">
+  <h2>
+
+  Dentistry
+  </h2>
+  <img src="department images/dentistry-removebg-preview.png">
+  <p>
+    Teeth give more than definition to the face. It is the fundamental part of the anatomy that has direct relation to the complete body. Many of the diseases or disorders of the teeth or the Oral Cavity can be found to have a direct or indirect effect on the rest of the body or vice versa and, many a time, these could be indicative of more serious conditions elsewhere in the body.
+
+    Proper Dental Care and Oral Hygiene now, can ensure good Dental health right through your old age… Care for your teeth now, while you can.
+    <br>
+    <br>
+    Equipped with some of the very latest equipment and facilities, we offer you world-class treatment for a wide range of dental specialties. The specialties we offer are Orthodontics, Prosthodontics, Conservative Dentistry, Pediatric Dentistry, Periodontics, Oro-maxillofacial surgery, Plastic Surgery etc. Our team of eminent Doctors, Dental, Oral and Maxillofacial surgeons coupled with proficient medical personnel are constantly updated on the technological advances aimed to bring you exceptional Dental and Oral Care Treatments.
+ We at HealthCare Hospital, apart from educating our patients on the fundamentals of Oral hygiene and Dental Care, also undertake evaluation, diagnosis, prevention and/or treatment (Non-surgical, Surgical or related procedures) of these conditions and their impact on the human body.
+  </p>
+</div>  
+</body>
+<body>
+    <h2 style="color:#146C94;">Clinical Team</h2>
+    <div class="container">
+      <div class="item">
+        <img src="doctorimages/vijay-removebg-preview.png" width="200" height="220"alt="Image 2" class="image">
+        <div class="text">
+        <h3> Dr. Vijay Kumar <br> Masters In Immediate Loading Strategic Implantology,Master of Dental Surgery in Prosthodontics</h3> 
+        <h3> Work Experience :10+ Yrs</h3>
+        <h3>Language :Telugu,Hindi,English</h3>
+        <h3> Timings: MONDAY-SATURDAY</h3>
+        <button  type="button" class="btn btn-outline-light btn-lg "> <a href="appointment.html" target="_blank">Book Appointment</a></button>
+        </div>
+      </div>
+      <div class="item">
+        <img src="doctorimages/sneha-removebg-preview.png" width="200" height="220"alt="Image 2" class="image">
+        <div class="text">
+            <h3> Dr. Sneha <br> BDS, DNB,MDS (Endodontics& Laser dentistry) </h3> 
+            <h3> Work Experience :5+ Yrs</h3>
+            <h3>Language :Telugu,Hindi,English</h3>
+            <h3> Timings: MONDAY-SATURDAY</h3>
+            <button  type="button" class="btn btn-outline-light btn-lg "> <a href="appointment.html" target="_blank">Book Appointment</a></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

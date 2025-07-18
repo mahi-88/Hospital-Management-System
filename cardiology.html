@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cardiology Department - Advanced heart care and cardiac treatments at Health Care Hospital">
+    <title>Cardiology Department - Health Care Hospital</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .department-hero {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .department-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('department images/cardiology-removebg-preview.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .department-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-item {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border-left: 4px solid #dc2626;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .doctor-image {
+            height: 250px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .doctor-info {
+            padding: 1.5rem;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .equipment-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .equipment-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .cta-section {
+            background: var(--bg-light);
+            padding: 4rem 0;
+        }
+        
+        .cta-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="health website.jpg" alt="Health Care Hospital" class="logo">
+                <span class="brand-text">Health Care Hospital</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#departments">Departments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="doctors2.0.html">Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactus.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="navbar-actions ms-3">
+                    <a href="appointment.html" class="btn btn-primary">
+                        <i class="fas fa-calendar-plus me-1"></i>Book Appointment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="department-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold mb-4">Cardiology Department</h1>
+                    <p class="lead mb-4">
+                        Our Cardiology Department provides comprehensive heart care with state-of-the-art technology 
+                        and expert cardiologists. We offer advanced diagnostic and treatment services for all types 
+                        of cardiovascular conditions.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="appointment.html" class="btn btn-light btn-lg">
+                            <i class="fas fa-calendar-plus me-2"></i>Book Consultation
+                        </a>
+                        <a href="#services" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-info-circle me-2"></i>Our Services
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="text-center">
+                        <img src="department images/cardiology-removebg-preview.png" 
+                             alt="Cardiology" class="img-fluid" style="max-height: 300px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">Our Cardiology Services</h2>
+                    <p class="section-subtitle">
+                        We provide comprehensive cardiac care from prevention to complex interventions
+                    </p>
+                </div>
+            </div>
+            
+            <div class="service-grid">
+                <div class="service-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h4>Cardiac Catheterization</h4>
+                    <p>Advanced diagnostic and therapeutic procedures to evaluate and treat heart conditions using minimally invasive techniques.</p>
+                </div>
+                
+                <div class="service-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h4>Echocardiography</h4>
+                    <p>Non-invasive ultrasound imaging to assess heart structure and function, providing detailed cardiac evaluation.</p>
+                </div>
+                
+                <div class="service-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Stress Testing</h4>
+                    <p>Comprehensive cardiac stress tests to evaluate heart performance under physical or pharmacological stress.</p>
+                </div>
+                
+                <div class="service-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h4>Interventional Cardiology</h4>
+                    <p>Advanced procedures including angioplasty, stent placement, and other catheter-based treatments.</p>
+                </div>
+                
+                <div class="service-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Heart Rhythm Management</h4>
+                    <p>Diagnosis and treatment of arrhythmias, including pacemaker and defibrillator implantation.</p>
+                </div>
+                
+                <div class="service-item" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h4>Preventive Cardiology</h4>
+                    <p>Comprehensive risk assessment and prevention strategies to maintain optimal cardiovascular health.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-card">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Successful Procedures</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Expert Cardiologists</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Emergency Care</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">Advanced Equipment</h2>
+                    <p class="section-subtitle">
+                        State-of-the-art technology for accurate diagnosis and effective treatment
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="equipment-card">
+                        <div class="equipment-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h5>Cardiac Catheterization Lab</h5>
+                        <p>Advanced cath lab with digital imaging for precise cardiac interventions and diagnostics.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="equipment-card">
+                        <div class="equipment-icon">
+                            <i class="fas fa-x-ray"></i>
+                        </div>
+                        <h5>3D Echocardiography</h5>
+                        <p>Latest 3D echo technology for detailed heart structure and function assessment.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="equipment-card">
+                        <div class="equipment-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h5>Holter Monitoring</h5>
+                        <p>24-hour continuous heart rhythm monitoring for comprehensive cardiac evaluation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">Our Cardiology Team</h2>
+                    <p class="section-subtitle">
+                        Meet our experienced cardiologists dedicated to your heart health
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="doctor-card">
+                        <div class="doctor-image">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="doctor-info">
+                            <h5>Dr. John Smith</h5>
+                            <p class="text-primary mb-2">Chief Cardiologist</p>
+                            <p class="small text-muted">20+ years experience in interventional cardiology and cardiac surgery.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">Interventional</span>
+                                <a href="appointment.html" class="btn btn-outline-primary btn-sm">Book Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="doctor-card">
+                        <div class="doctor-image">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="doctor-info">
+                            <h5>Dr. Sarah Johnson</h5>
+                            <p class="text-primary mb-2">Pediatric Cardiologist</p>
+                            <p class="small text-muted">Specialist in congenital heart diseases and pediatric cardiac care.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">Pediatric</span>
+                                <a href="appointment.html" class="btn btn-outline-primary btn-sm">Book Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="doctor-card">
+                        <div class="doctor-image">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="doctor-info">
+                            <h5>Dr. Michael Williams</h5>
+                            <p class="text-primary mb-2">Electrophysiologist</p>
+                            <p class="small text-muted">Expert in heart rhythm disorders and cardiac device implantation.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">Rhythm</span>
+                                <a href="appointment.html" class="btn btn-outline-primary btn-sm">Book Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="cta-card" data-aos="fade-up">
+                        <h3 class="mb-4">Need Cardiac Care?</h3>
+                        <p class="mb-4">Don't wait when it comes to your heart health. Our expert cardiologists are here to provide you with the best possible care.</p>
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                            <a href="appointment.html" class="btn btn-primary btn-lg">
+                                <i class="fas fa-calendar-plus me-2"></i>Schedule Consultation
+                            </a>
+                            <a href="tel:+1234567890" class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-phone me-2"></i>Emergency: (234) 567-890
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="mb-0">&copy; 2024 Health Care Hospital. All rights reserved.</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <a href="index.html" class="footer-link me-3">Home</a>
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

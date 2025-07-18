@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Health Care Hospital - Providing exceptional medical care with cutting-edge technology and compassionate service">
+    <meta name="keywords" content="hospital, healthcare, medical, doctors, appointments, cardiology, dentistry, dermatology">
+    <title>Health Care Hospital - Excellence in Healthcare</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="health website.jpg" alt="Health Care Hospital" class="logo">
+                <span class="brand-text">Health Care Hospital</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#departments">Departments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="doctors2.0.html">Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactus.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="navbar-actions ms-3">
+                    <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#searchModal">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <a href="appointment.html" class="btn btn-primary">
+                        <i class="fas fa-calendar-plus me-1"></i>Book Appointment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="row align-items-center min-vh-100">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="hero-content">
+                            <h1 class="hero-title">
+                                Excellence in <span class="text-primary">Healthcare</span>
+                            </h1>
+                            <p class="hero-subtitle">
+                                Discover exceptional healthcare at Health Care Hospital, where cutting-edge technology 
+                                and compassionate care converge for an unparalleled patient experience.
+                            </p>
+                            <div class="hero-actions">
+                                <a href="appointment.html" class="btn btn-primary btn-lg me-3">
+                                    <i class="fas fa-calendar-plus me-2"></i>Book Appointment
+                                </a>
+                                <a href="#services" class="btn btn-outline-light btn-lg">
+                                    <i class="fas fa-info-circle me-2"></i>Learn More
+                                </a>
+                            </div>
+                            <div class="hero-stats mt-4">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="stat-item">
+                                            <h3 class="stat-number">500+</h3>
+                                            <p class="stat-label">Expert Doctors</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="stat-item">
+                                            <h3 class="stat-number">50k+</h3>
+                                            <p class="stat-label">Happy Patients</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="stat-item">
+                                            <h3 class="stat-number">24/7</h3>
+                                            <p class="stat-label">Emergency Care</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="hero-image">
+                            <img src="doctor-nurses-special-equipment_23-2148980721-removebg-preview.png" 
+                                 alt="Healthcare Professionals" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section id="departments" class="departments-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">Centre of Excellence</h2>
+                    <p class="section-subtitle">
+                        Our specialized departments offer comprehensive care with state-of-the-art facilities 
+                        and expert medical professionals.
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <img src="department images/cardiology-removebg-preview.png" alt="Cardiology">
+                        </div>
+                        <h4>Cardiology</h4>
+                        <p>Comprehensive heart care with advanced cardiac procedures and treatments.</p>
+                        <a href="cardiology.html" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <img src="department images/dentistry-removebg-preview.png" alt="Dentistry">
+                        </div>
+                        <h4>Dentistry</h4>
+                        <p>Complete dental care from routine checkups to advanced oral surgery.</p>
+                        <a href="dentistry (1).html" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <img src="department images/dermatology-removebg-preview.png" alt="Dermatology">
+                        </div>
+                        <h4>Dermatology</h4>
+                        <p>Expert skin care and treatment for all dermatological conditions.</p>
+                        <a href="dermatology (1).html" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <img src="department images/neurology-removebg-preview.png" alt="Neurology">
+                        </div>
+                        <h4>Neurology</h4>
+                        <p>Advanced neurological care for brain and nervous system disorders.</p>
+                        <a href="appointment.html" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <img src="department images/Orthopedics-2-removebg-preview.png" alt="Orthopedics">
+                        </div>
+                        <h4>Orthopedics</h4>
+                        <p>Comprehensive bone, joint, and muscle care with modern techniques.</p>
+                        <a href="appointment.html" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <img src="department images/nephro_img-removebg-preview.png" alt="Nephrology">
+                        </div>
+                        <h4>Nephrology</h4>
+                        <p>Specialized kidney care and treatment for renal disorders.</p>
+                        <a href="appointment.html" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">Why Choose Us?</h2>
+                    <p class="section-subtitle">
+                        We are committed to providing exceptional healthcare services with a patient-centered approach.
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h4>Expert Medical Team</h4>
+                        <p>Our renowned team of expert doctors, specialists, and healthcare professionals bring years of experience to ensure top-notch medical care.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Patient-Centered Care</h4>
+                        <p>We prioritize your well-being and comfort with compassionate staff committed to providing personalized care throughout your healthcare journey.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h4>Modern Facilities</h4>
+                        <p>Experience healthcare at its finest with cutting-edge facilities equipped with the latest medical technology and advanced equipment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Contact Section -->
+    <section class="emergency-section py-4 bg-danger text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-phone-alt fa-2x me-3"></i>
+                        <div>
+                            <h5 class="mb-1">24/7 Emergency Services</h5>
+                            <p class="mb-0">Call us immediately for any medical emergency</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="tel:+1234567890" class="btn btn-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>+1 (234) 567-890
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand">
+                        <img src="health website.jpg" alt="Health Care Hospital" class="footer-logo mb-3">
+                        <h5>Health Care Hospital</h5>
+                        <p>Providing exceptional healthcare with cutting-edge technology and compassionate care.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="footer-title">Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#departments">Departments</a></li>
+                        <li><a href="doctors2.0.html">Doctors</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="footer-title">Departments</h6>
+                    <ul class="footer-links">
+                        <li><a href="cardiology (1).html">Cardiology</a></li>
+                        <li><a href="dentistry (1).html">Dentistry</a></li>
+                        <li><a href="dermatology (1).html">Dermatology</a></li>
+                        <li><a href="appointment.html">Neurology</a></li>
+                        <li><a href="appointment.html">Orthopedics</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="footer-title">Contact Info</h6>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Healthcare Street, Medical City, MC 12345</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (234) 567-890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@healthcarehospital.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 Emergency Services</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="mb-0">&copy; 2024 Health Care Hospital. All rights reserved.</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link me-3">Terms of Service</a>
+                    <a href="#" class="footer-link">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Search for doctors, departments, services...">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="search-suggestions mt-3">
+                        <h6>Popular Searches:</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-light text-dark">Cardiology</span>
+                            <span class="badge bg-light text-dark">Emergency</span>
+                            <span class="badge bg-light text-dark">Appointment</span>
+                            <span class="badge bg-light text-dark">Doctors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="btn-back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="js/main.js"></script>
+
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="spinner"></div>
+    </div>
+</body>
+</html>

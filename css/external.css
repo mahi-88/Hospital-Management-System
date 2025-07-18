@@ -1,0 +1,892 @@
+
+nav{
+    top: 0;
+    position: fixed;
+    display: flex;
+   width: 100%;
+   height: 18vh;
+   background-color: #fff;
+   z-index: 999; 
+}
+nav ul {
+    display: flex;
+    margin: 0.2%;
+    list-style-type: none;
+    padding: 1%;
+    margin-top: 3%;
+}
+
+nav ul a{
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul a:hover{
+    color: rgb(30, 138, 30);
+    text-decoration: underline;
+}
+
+nav a {
+    color: rgb(8, 8, 8);
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 15px;
+
+}
+
+nav .logo{
+    padding-right: 4%;
+    width: 88%;
+    height: 18vh;
+    cursor: pointer;
+}
+
+.search{
+    margin-top: 4%;
+    margin-left: 4%;
+    
+}
+.photo{
+    background-color:darkcyan;
+    width:100%;
+}
+
+.photo .image{
+    width: 28%;
+    margin: 2% 5% 4% 15%;
+}
+
+.photo a{
+    text-decoration: none;
+    color: black;
+}
+
+.photo .btn:hover {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+.photo .para{
+    margin-left:  40%;
+    margin: 10% 18% 10% 0;
+    float:right;
+    text-align: left;
+    width: 30%;
+}
+
+.photo p{
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.photo .para .btn{
+    margin-top: 8%;
+    margin-left: 50%;
+}
+.photo .para .btn a:hover{
+    color: green;
+}
+.excellence{
+    margin-top: 18vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width:100%;
+    height:55vh;
+    background-color: darkcyan;
+    background-image: url("https://media.istockphoto.com/id/1364075546/photo/empty-corridor-in-modern-hospital-with-information-counter-and-hospital-bed-in-rooms-3d.jpg?s=612x612&w=0&k=20&c=xxFDmIVpH1wJaaiorpvfzec4RRggSb48PDb_dU9bTjo=");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.excellence h2{
+    padding: 2%;
+    /* color: #fff;*/
+}
+
+.dept .btn a:hover{
+    color:green;
+
+}
+.dept a{
+    text-decoration: none;
+    color:#fff;
+}
+
+.dept .btn:hover{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.dept {
+    display: block;
+}
+
+.dept button{
+    margin: 4% 2% 2% 4%;
+    background-color: rgb(34, 75, 79);
+}
+
+
+.card-img-top {
+    width: 200px;
+    height: 150px; 
+    object-fit: cover; 
+      }
+
+
+
+.location .loc-img {
+    float:left;
+    width:28%;
+    margin-right: 8%;
+    margin-left: 3%;
+}
+.location {
+    width:80%;
+    height: 50vh;
+    
+}
+.location h2{
+    margin: 3%;
+}
+.location p{
+    text-align: left;
+    margin-top: 10%;
+}
+
+#services{
+    height: 4vh;
+}
+
+.footer{
+    display:flex;
+}
+.app{
+    width:34%;
+    margin-left:2%;
+}
+.Emergency{
+    width:33%;
+}
+.Enquiry{
+    width:33%;
+}
+.footer2{
+    display:flex;
+}
+.forpatient{
+   width:34%;
+   margin-left: 2%;
+}
+.Mainlinks{
+   width: 33%;
+}
+.Corporate{
+    width: 33%;
+}
+.footer2 ul{
+    padding-left: 1%;
+    list-style-type: none;
+    
+}
+.footer2  a{
+    color:white;
+    text-decoration: none;
+}
+.footer2 a:hover{
+    color:grey ;
+    text-decoration: underline;
+}
+.footer3{
+    display:flex;
+    height: 24vh;
+}
+.Abouthospital{
+    width:33%;
+    margin-left:2%
+    
+}
+.Address{
+    width:33%;
+}
+.Office Contact{
+    width:33%;
+}
+#footer{
+    background-color:black;
+    color:white;
+}
+#footer hr{
+    margin-left: 15%;
+    width:50%;
+    height:0.5vh;
+    border-style:dotted;
+}
+.get-app{
+    width:100%;
+    height:20vh;
+}
+.Corporate img{
+    float:right;
+    margin-top: 8%;
+    margin-right: 6%;
+
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+#homes{
+    margin-top: 18vh;
+
+    
+}  
+.ex{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width:100%;
+    height: 70vh;
+    
+    
+}
+.ex img{
+    display: block
+}
+
+.ex h2{
+    padding: 2%;
+
+}
+
+.ex.dept .btn {
+    margin: 20px;
+    padding: 20px;
+    background-color: #82AAE3;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  }
+  .ex.dept .btn img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 10px;
+  }
+  .ex.dept .btn:hover {
+    transform: scale(1.05);
+    background-color: #66baff;
+  }
+
+.main-box {
+    max-width: 100%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #91C8E4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .main-image {
+    float: right;
+    width: 50%;
+    margin-left: 20px;
+  }
+
+  .main-image img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .left-content {
+    width: 40%;
+    float: left;
+  }
+
+  .left-content p {
+    color: #333333;
+    margin-top: 0;
+  }
+
+  .stickers-container {
+    display: flex;
+    justify-content: space-between;
+
+  
+    flex-wrap: wrap;
+    padding:70px;
+  }
+
+  .sticker {
+      flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    
+  }
+
+  .sticker-matter {
+    
+    margin-top:10px;
+    
+  }
+  .card img{
+    width: 25%;
+    height: 8vh;
+    border-radius: 100px;
+    border: 2px solid #5fb8e0;
+
+  }
+
+  .card{
+    animation:  moveright 1.2s backwards;
+  }
+  @keyframes moveright{
+    0%{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+  .card{
+    border: 0px;
+  }
+
+  .card1{
+    border:0px;
+  }
+  .row{
+      gap: 50px;
+      padding: 5rem;
+  }
+
+  .card-body{
+    padding: 0px;
+    margin-top: 15px;
+  }
+  body{
+    font-size: 1.2rem;
+  }
+  .head{
+    font-size: 1.3rem;
+  }
+  
+  h2{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  #services .card{
+    width: 8%; 
+    height: 16vh;
+}
+  @media screen and (max-width:1110px) {
+    .card1{
+      border: 0px;
+      border-left: 1px solid rgb(95, 184, 224); 
+    }
+  }
+  .main{
+    height: 50vh;
+  }
+  .hover-effect1 {
+    min-height: 20px;
+    background:darkcyan;
+    text-align: center;
+  }
+  .hover-effect1 ul {
+   padding-top: 1px;
+  }
+  .hover-effect1 ul li {
+   display: inline-block;
+  }
+  .hover-effect1 ul li a {
+   font-size: 30px;
+   text-align: center;
+   color: #fff;
+   margin: 0px 10px;
+   line-height: 50px;
+   display: inline-block;
+   width: 50px;
+   height: 50px;
+   background:darkcyan;
+
+  }
+  .hover-effect1 ul li:hover a {
+    border-radius: 50%;
+    background:cyan;
+
+   transform: rotate(360deg);
+  }
+  #link10 p a{
+    text-decoration: none;
+    color: #fff;
+  }
+  #link10 p a:hover{
+    text-decoration: underline;
+    color: #5fb8e0;
+  }
+  .dept1 .btn a:hover{
+    color:rgb(181, 181, 181);
+
+}
+.dept1 a{
+    text-decoration: none;
+    color:#000000;
+}
+
+.dept1 .btn:hover{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.dept1 {
+    display: block;
+    
+}
+.ex{
+    display: flex;
+    height: 18vh;
+    
+}
+#services .card{
+    margin-left: 11%;
+}
+#services h2{
+    margin:3%;
+}
+#services button a{
+    text-decoration: none;
+    color: #000000;
+  
+    
+}
+
+#services .card-body :hover{
+    background-color:aqua ;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+    
+}
+
+
+#services img{
+    width:100%;
+    height: 16vh;
+    border-radius: 0%;
+}
+.dept button{
+    width: 12%;
+
+}
+#healthTips{
+    height:60vh;
+   
+   
+}
+#services{
+    height: 50vh;
+}
+#healthTips h2{
+    padding-left: 3%;
+    color: green;
+
+}
+.card-title {
+    color: green;
+}
+
+.card-text{
+    color: #000000;
+    text-align: left;
+}
+
+     
+
+@media screen and (min-width:770px) and (max-width:850px) {
+
+    .card img {
+        width: 15%;
+        height: 5vh;
+        border-radius: 100%;
+        border: 2px solid #5fb8e0;
+    }
+    .photo {
+        background-color: darkcyan;
+        width: 100%;
+        height: 59vh;
+    }
+    .photo .btn{
+        width: 65%;
+        margin-right: 20%;
+    }
+
+    
+    #services img {
+        width: 100%;
+        height: 9vh;
+        border-radius: 0%;
+    }
+    #services {
+        height: 55vh;
+        width: 100%;
+    }
+    .ex {
+        display: flex;
+        height: 15vh;
+    }
+    #services img {
+        width: 100%;
+        height: 15vh;
+        
+    }
+    #services .card{
+        width: 100%;
+        margin-left: 4%;
+    }
+
+    .main {
+        height: 2vh;
+    }
+    .excellence{
+        height: 50vh;
+    }
+    .excellence .btn{
+        width: 23%;
+
+    }
+    nav{
+        top: 0;
+        position: fixed;
+        display: flex;
+       width: 125%;
+       height: 18vh;
+       background-color: #fff;
+       z-index: 999; 
+    }
+    
+    nav .logo {
+        padding-right: 0%;
+        width: 100%;
+        height: 18vh;
+        cursor: pointer;
+    }
+    nav ul {
+        font-size: 1.1rem;
+        margin-left: 5%;
+        width: 150%;
+
+    }
+    .photo .image{
+        width: 35%;
+        margin: 2% 5% 4% 15%;
+        margin-left: -2%;
+    }
+    .photo .para{
+        
+        float:right;
+        text-align: left;
+        width: 40%;
+       
+    }
+    
+    .ex .btn a{
+        text-decoration: none;
+        color: black;
+    }
+   
+    .ex btn:hover{
+        transition: all 0.3s ease-in-out;
+        transform: scale(1.1);
+    }
+   
+    #services{
+        height: 40vh;
+        width: 100%;
+    }
+    #healthTips{
+        height: 200vh;
+    }
+   
+    .ex
+    {
+        display: flex;
+        width: 8%; height:16vh;
+    }
+    #healthTips{
+        height: 170vh;
+    }
+    .ex {
+        display: flex;
+        width: 100%;
+        height: 14vh;
+        margin:3%;
+    }
+    #services .ex .card{
+        margin: 5%;
+
+    }
+      
+}
+@media screen and (min-width:622px) and (max-width:769px) {
+
+    .card img {
+        width: 15%;
+        height: 5vh;
+        border-radius: 100%;
+        border: 2px solid #5fb8e0;
+    }
+    .photo {
+        background-color: darkcyan;
+        width: 100%;
+        height: 59vh;
+    }
+    .photo .btn{
+        width: 65%;
+        margin-right: 20%;
+    }
+
+    
+    #services img {
+        width: 100%;
+        height: 9vh;
+        border-radius: 0%;
+    }
+    #services {
+        height: 55vh;
+        width: 100%;
+    }
+    .ex {
+        display: flex;
+        height: 15vh;
+    }
+    #services img {
+        width: 100%;
+        height: 15vh;
+        
+    }
+    #services .card{
+        width: 100%;
+        margin-left: 4%;
+    }
+
+    .main {
+        height: 2vh;
+    }
+    .excellence{
+        height: 50vh;
+    }
+    .excellence .btn{
+        width: 23%;
+
+    }
+    nav{
+        top: 0;
+        position: fixed;
+        display: flex;
+       width: 125%;
+       height: 18vh;
+       background-color: #fff;
+       z-index: 999; 
+    }
+    
+    nav .logo {
+        padding-right: 0%;
+        width: 100%;
+        height: 18vh;
+        cursor: pointer;
+    }
+    nav ul {
+        font-size: 1.1rem;
+        margin-left: 5%;
+        width: 150%;
+
+    }
+    .photo .image{
+        width: 35%;
+        margin: 2% 5% 4% 15%;
+        margin-left: -2%;
+    }
+    .photo .para{
+        
+        float:right;
+        text-align: left;
+        width: 40%;
+       
+    }
+    
+    .ex .btn a{
+        text-decoration: none;
+        color: black;
+    }
+   
+    .ex btn:hover{
+        transition: all 0.3s ease-in-out;
+        transform: scale(1.1);
+    }
+   
+    #services{
+        height: 40vh;
+        width: 100%;
+    }
+    #healthTips {
+        height: 320vh;
+    }
+   
+    .ex
+    {
+        display: flex;
+        width: 8%; height:16vh;
+    }
+    
+    .ex {
+        display: flex;
+        width: 100%;
+        height: 14vh;
+        margin:3%;
+    }
+    #services .ex .card{
+        margin: 5%;
+
+    }
+}
+    @media screen  and (max-width:620px)
+    {
+        .card img {
+            width: 3%;
+            height: 2vh;
+            border-radius: 100%;
+            border: 2px solid #5fb8e0;
+        }
+        .photo {
+            background-color:cyan;
+            width: 100%;
+            height: 59vh;
+        }
+        .photo .btn{
+            width: 65%;
+            margin-right: 20%;
+        }
+    
+        
+        #services img {
+            width: 100%;
+            height: 9vh;
+            border-radius: 0%;
+        }
+        #services {
+            height: 55vh;
+            width: 100%;
+        }
+        .ex {
+            display: flex;
+            height: 15vh;
+        }
+        #services img {
+            width: 100%;
+            height: 15vh;
+            
+        }
+        #services .card{
+            width: 100%;
+            margin-left: 4%;
+        }
+    
+        .main {
+            height: 2vh;
+        }
+        .excellence{
+            height: 50vh;
+        }
+        .excellence .btn{
+            width: 26%;
+    
+        }
+        nav{
+            top: 0;
+            position: fixed;
+            display: flex;
+           width: 125%;
+           height: 18vh;
+           background-color: #fff;
+           z-index: 999; 
+        }
+        
+        nav .logo {
+            padding-right: 0%;
+            width: 100%;
+            height: 18vh;
+            cursor: pointer;
+        }
+        nav ul {
+            font-size: 1.1rem;
+            margin-left: 5%;
+            width: 150%;
+    
+        }
+        .photo .image{
+            width: 35%;
+            margin: 2% 5% 4% 15%;
+            margin-left: -2%;
+        }
+        .photo .para{
+            
+            float:right;
+            text-align: left;
+            width: 40%;
+           
+        }
+        
+        .ex .btn a{
+            text-decoration: none;
+            color: black;
+        }
+       
+        .ex btn:hover{
+            transition: all 0.3s ease-in-out;
+            transform: scale(1.1);
+        }
+       
+        #services{
+            height: 40vh;
+            width: 100%;
+        }
+        #healthTips {
+            height: 320vh;
+        }
+       
+        .ex
+        {
+            display: flex;
+            width: 8%; height:16vh;
+        }
+        
+        .ex {
+            display: flex;
+            width: 100%;
+            height: 14vh;
+            margin:3%;
+        }
+        #services .ex .card{
+            margin: 5%;
+    
+        }
+    }
+       

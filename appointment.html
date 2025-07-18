@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your appointment at Health Care Hospital - Easy online appointment booking system">
+    <title>Book Appointment - Health Care Hospital</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .appointment-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            margin-top: 80px;
+        }
+
+        .appointment-form {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: 2.5rem;
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-floating {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-floating > .form-control {
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem 0.75rem;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .form-floating > .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+        }
+
+        .form-floating > label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .form-select {
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem 0.75rem;
+            transition: var(--transition);
+        }
+
+        .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .time-slot {
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .time-slot:hover {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .time-slot.selected {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .time-slot.disabled {
+            background: #f3f4f6;
+            color: #9ca3af;
+            cursor: not-allowed;
+            border-color: #e5e7eb;
+        }
+
+        .appointment-info {
+            background: var(--bg-light);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .btn-appointment {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 3rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: white;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn-appointment:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            color: white;
+        }
+
+        .btn-appointment:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-validation {
+            display: none;
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .form-validation.show {
+            display: block;
+        }
+
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="health website.jpg" alt="Health Care Hospital" class="logo">
+                <span class="brand-text">Health Care Hospital</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#departments">Departments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="doctors2.0.html">Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactus.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="appointment-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4">Book Your Appointment</h1>
+                    <p class="lead mb-0">Schedule your visit with our expert medical professionals. We're here to provide you with the best healthcare experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Form Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="appointment-form">
+                        <div class="success-message" id="successMessage">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Your appointment has been successfully booked! We'll contact you shortly to confirm the details.
+                        </div>
+
+                        <h3 class="mb-4 text-center">Schedule Your Appointment</h3>
+
+                        <form id="appointmentForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" required>
+                                        <label for="fullName">Full Name *</label>
+                                        <div class="form-validation" id="fullNameError">Please enter your full name</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+                                        <label for="email">Email Address *</label>
+                                        <div class="form-validation" id="emailError">Please enter a valid email address</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+                                        <label for="phone">Phone Number *</label>
+                                        <div class="form-validation" id="phoneError">Please enter a valid phone number</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="age" name="age" placeholder="Age" min="1" max="120" required>
+                                        <label for="age">Age *</label>
+                                        <div class="form-validation" id="ageError">Please enter a valid age</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="department" class="form-label">Department *</label>
+                                    <select class="form-select" id="department" name="department" required>
+                                        <option value="">Select Department</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="dentistry">Dentistry</option>
+                                        <option value="dermatology">Dermatology</option>
+                                        <option value="neurology">Neurology</option>
+                                        <option value="orthopedics">Orthopedics</option>
+                                        <option value="nephrology">Nephrology</option>
+                                        <option value="emergency">Emergency</option>
+                                        <option value="general">General Medicine</option>
+                                    </select>
+                                    <div class="form-validation" id="departmentError">Please select a department</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="doctor" class="form-label">Preferred Doctor (Optional)</label>
+                                    <select class="form-select" id="doctor" name="doctor">
+                                        <option value="">Any Available Doctor</option>
+                                        <option value="dr-smith">Dr. John Smith</option>
+                                        <option value="dr-johnson">Dr. Sarah Johnson</option>
+                                        <option value="dr-williams">Dr. Michael Williams</option>
+                                        <option value="dr-brown">Dr. Emily Brown</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" required>
+                                        <label for="appointmentDate">Preferred Date *</label>
+                                        <div class="form-validation" id="dateError">Please select a valid date</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="timeSlot" class="form-label">Preferred Time *</label>
+                                    <div class="time-slots" id="timeSlots">
+                                        <div class="time-slot" data-time="09:00">9:00 AM</div>
+                                        <div class="time-slot" data-time="10:00">10:00 AM</div>
+                                        <div class="time-slot" data-time="11:00">11:00 AM</div>
+                                        <div class="time-slot" data-time="14:00">2:00 PM</div>
+                                        <div class="time-slot" data-time="15:00">3:00 PM</div>
+                                        <div class="time-slot" data-time="16:00">4:00 PM</div>
+                                    </div>
+                                    <div class="form-validation" id="timeError">Please select a time slot</div>
+                                    <input type="hidden" id="selectedTime" name="selectedTime" required>
+                                </div>
+                            </div>
+
+                            <div class="form-floating">
+                                <textarea class="form-control" id="symptoms" name="symptoms" placeholder="Describe your symptoms or reason for visit" style="height: 100px"></textarea>
+                                <label for="symptoms">Symptoms / Reason for Visit (Optional)</label>
+                            </div>
+
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                                <label class="form-check-label" for="terms">
+                                    I agree to the <a href="#" class="text-primary">Terms and Conditions</a> and <a href="#" class="text-primary">Privacy Policy</a> *
+                                </label>
+                                <div class="form-validation" id="termsError">Please accept the terms and conditions</div>
+                            </div>
+
+                            <button type="submit" class="btn-appointment" id="submitBtn">
+                                <i class="fas fa-calendar-plus me-2"></i>
+                                <span id="btnText">Book Appointment</span>
+                                <div class="loading d-none" id="loadingSpinner"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="appointment-info">
+                        <h4 class="mb-4">Appointment Information</h4>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Working Hours</h6>
+                                <p class="mb-0 text-muted">Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: 9:00 AM - 2:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Emergency Contact</h6>
+                                <p class="mb-0 text-muted">24/7 Emergency: +1 (234) 567-890</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Location</h6>
+                                <p class="mb-0 text-muted">123 Healthcare Street<br>Medical City, MC 12345</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Safety First</h6>
+                                <p class="mb-0 text-muted">All safety protocols followed. Masks required.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-3 bg-primary text-white rounded">
+                            <h6 class="mb-2"><i class="fas fa-info-circle me-2"></i>Important Note</h6>
+                            <p class="mb-0 small">Please arrive 15 minutes early for your appointment. Bring a valid ID and insurance card.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="mb-0">&copy; 2024 Health Care Hospital. All rights reserved.</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <a href="index.html" class="footer-link me-3">Home</a>
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Set minimum date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointmentDate').setAttribute('min', today);
+
+            // Set maximum date to 3 months from today
+            const maxDate = new Date();
+            maxDate.setMonth(maxDate.getMonth() + 3);
+            document.getElementById('appointmentDate').setAttribute('max', maxDate.toISOString().split('T')[0]);
+        });
+
+        // Time slot selection
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', function() {
+                if (!this.classList.contains('disabled')) {
+                    // Remove selected class from all slots
+                    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                    // Add selected class to clicked slot
+                    this.classList.add('selected');
+                    // Set hidden input value
+                    document.getElementById('selectedTime').value = this.dataset.time;
+                    // Clear time error
+                    document.getElementById('timeError').classList.remove('show');
+                }
+            });
+        });
+
+        // Form validation
+        function validateForm() {
+            let isValid = true;
+
+            // Full Name validation
+            const fullName = document.getElementById('fullName');
+            if (fullName.value.trim().length < 2) {
+                showError('fullNameError', 'Please enter a valid full name (at least 2 characters)');
+                isValid = false;
+            } else {
+                hideError('fullNameError');
+            }
+
+            // Email validation
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                showError('emailError', 'Please enter a valid email address');
+                isValid = false;
+            } else {
+                hideError('emailError');
+            }
+
+            // Phone validation
+            const phone = document.getElementById('phone');
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            if (!phoneRegex.test(phone.value.replace(/\s/g, ''))) {
+                showError('phoneError', 'Please enter a valid phone number');
+                isValid = false;
+            } else {
+                hideError('phoneError');
+            }
+
+            // Age validation
+            const age = document.getElementById('age');
+            if (age.value < 1 || age.value > 120) {
+                showError('ageError', 'Please enter a valid age (1-120)');
+                isValid = false;
+            } else {
+                hideError('ageError');
+            }
+
+            // Department validation
+            const department = document.getElementById('department');
+            if (!department.value) {
+                showError('departmentError', 'Please select a department');
+                isValid = false;
+            } else {
+                hideError('departmentError');
+            }
+
+            // Date validation
+            const appointmentDate = document.getElementById('appointmentDate');
+            const selectedDate = new Date(appointmentDate.value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate < today) {
+                showError('dateError', 'Please select a future date');
+                isValid = false;
+            } else {
+                hideError('dateError');
+            }
+
+            // Time validation
+            const selectedTime = document.getElementById('selectedTime');
+            if (!selectedTime.value) {
+                showError('timeError', 'Please select a time slot');
+                isValid = false;
+            } else {
+                hideError('timeError');
+            }
+
+            // Terms validation
+            const terms = document.getElementById('terms');
+            if (!terms.checked) {
+                showError('termsError', 'Please accept the terms and conditions');
+                isValid = false;
+            } else {
+                hideError('termsError');
+            }
+
+            return isValid;
+        }
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+
+        function hideError(elementId) {
+            document.getElementById(elementId).classList.remove('show');
+        }
+
+        // Form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (validateForm()) {
+                const submitBtn = document.getElementById('submitBtn');
+                const btnText = document.getElementById('btnText');
+                const loadingSpinner = document.getElementById('loadingSpinner');
+
+                // Show loading state
+                submitBtn.disabled = true;
+                btnText.textContent = 'Booking...';
+                loadingSpinner.classList.remove('d-none');
+
+                // Simulate API call
+                setTimeout(() => {
+                    // Hide loading state
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'Book Appointment';
+                    loadingSpinner.classList.add('d-none');
+
+                    // Show success message
+                    document.getElementById('successMessage').classList.add('show');
+
+                    // Reset form
+                    this.reset();
+                    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                    document.getElementById('selectedTime').value = '';
+
+                    // Scroll to success message
+                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            }
+        });
+
+        // Real-time validation
+        document.getElementById('fullName').addEventListener('blur', function() {
+            if (this.value.trim().length >= 2) {
+                hideError('fullNameError');
+            }
+        });
+
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(this.value)) {
+                hideError('emailError');
+            }
+        });
+
+        document.getElementById('phone').addEventListener('blur', function() {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            if (phoneRegex.test(this.value.replace(/\s/g, ''))) {
+                hideError('phoneError');
+            }
+        });
+
+        document.getElementById('age').addEventListener('blur', function() {
+            if (this.value >= 1 && this.value <= 120) {
+                hideError('ageError');
+            }
+        });
+
+        document.getElementById('department').addEventListener('change', function() {
+            if (this.value) {
+                hideError('departmentError');
+            }
+        });
+
+        document.getElementById('appointmentDate').addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate >= today) {
+                hideError('dateError');
+            }
+        });
+
+        document.getElementById('terms').addEventListener('change', function() {
+            if (this.checked) {
+                hideError('termsError');
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

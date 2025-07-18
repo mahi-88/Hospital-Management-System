@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact Us - HealthCare Hospitals</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<style>
+
+    #contact{
+        margin-top: 18vh;
+    }
+  </style>
+
+<body style="background-color: #f0f0f0;">
+    <script id="replace_with_navbar" src="nav.js"></script>
+<section id="contact">
+    <div class="container my-5" >
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Contact Us</h1>
+                <p>Health Care Hospitals is always looking to make things easier for you. Our aim is to provide our customers
+                    with the best medical facilities, constant care, and reliable support. If you would like to get in touch with
+                    a doctor from a specific department, would like some specific information about the services we provide, or
+                    just have a question for us,
+                    Please fill up the Form given below and we will get back to you.</p>
+
+                <form class="needs-validation" id="myForm">
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label text-end" for="typeOfQuery">Type of Query:</label>
+                        <div class="col-sm-9">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="typeOfQuery" id="enquiry" value="Enquiry" required>
+                                <label class="form-check-label" for="enquiry">Enquiry</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="typeOfQuery" id="complaint" value="Complaint">
+                                <label class="form-check-label" for="complaint">Complaint</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="typeOfQuery" id="feedback" value="Feedback">
+                                <label class="form-check-label" for="feedback">Feedback</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3" >
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="fullName" placeholder="Full Name*" id="fullName" required>
+                            <div class="invalid-feedback">Please provide your full name.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email*" required>
+                            <div class="invalid-feedback">Please provide a valid email address.</div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <input type="tel" class="form-control" name="mobileNumber" id="mobileNumber" placeholder="Mobile Number*" pattern="[0-9]{10}" required>
+                            <div class="invalid-feedback">Please provide a valid 10-digit mobile number.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-select" name="country" id="country" required>
+                                <option value="" disabled selected>-Select Locality-</option>
+                                <option value="India">ameerpet</option>
+                                <option value="USA">giddalur</option>
+                                <option value="UK">kondapur</option>
+                                
+                            </select>
+                            <div class="invalid-feedback">Please select a country.</div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <select id="firstDropdown" style="width: 41vh;height: 4vh;">
+                                <option value="option0" disabled selected>-Select a Department-</option>
+                                <option value="option1">Cardiology</option>
+                                <option value="option2">Neurology</option>
+                                <option value="option3">Nephrology</option>
+                                <option value="option4">Dermatology</option>
+                                <option value="option5">Orthopeadics</option>
+                                <option value="option6">Dentistry</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a speciality.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <select id="secondDropdown" style="width: 41vh; height: 4vh;">
+                              
+                            </select>
+                            <div class="invalid-feedback">Please select a doctor.</div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="message" class="form-label">Message:</label>
+                            <textarea class="form-control" name="message" id="message" rows="4" cols="50" required></textarea>
+                            <div class="invalid-feedback">Please provide a message.</div>
+                        </div>
+                    </div>
+              
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <input type="submit" class="btn btn-primary" value="SUBMIT FORM">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 image-container" >
+                <img src="https://www.apollohospitals.com/wp-content/themes/apollohospitals/assets/images/contact-image.jpg" alt="Contact Image" class="img-fluid" style="height: 100vh;">
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script>
+        const firstDropdown = document.getElementById('firstDropdown');
+        const secondDropdown = document.getElementById('secondDropdown');
+    
+        const optionsBySelection = {
+            option0: ['Select a Doctor'],
+            option1: ['Dr Pallavi','Dr Gayathri','Dr Mahi','Dr radha'],
+            option2: ['Dr Jeevika' , 'Dr ChandraSekhar','Dr Jason'],
+            option3: ['Dr Zarina' , 'Dr  Mary','Dr Anu'],
+            option4: ['Dr Charitha' , 'Dr Bhanumathi','Dr Mallika '],
+            option5: ['Dr Arunima','Dr Lilavathi','Dr lokesh'],
+            option6: ['Dr Ravi', 'Dr Arun','Dr Arjun','Dr Manju'],
+        };
+    
+        function updateSecondDropdown(selectedValue) {
+      
+            secondDropdown.innerHTML = '';
+    
+        
+            optionsBySelection[selectedValue].forEach(optionValue => {
+                const option = document.createElement('option');
+                option.value = optionValue;
+                option.textContent = optionValue;
+                secondDropdown.appendChild(option);
+            });
+        }
+    
+    
+        firstDropdown.addEventListener('change', function () {
+            const selectedValue = firstDropdown.value;
+            updateSecondDropdown(selectedValue);
+        });
+    
+        
+        updateSecondDropdown(firstDropdown.value);
+    </script>
+    <script>
+        const fullNameField = document.getElementById('fullName');
+        const emailField = document.getElementById('email');
+        const mobileField = document.getElementById('mobileNumber');
+    
+        const form = document.getElementById('myForm');
+    
+        form.addEventListener('submit', function (event) {
+            let isValid = true;
+    
+           
+            if (!/^[A-Za-z\s]+$/.test(fullNameField.value.trim())) {
+                fullNameField.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                fullNameField.classList.remove('is-invalid');
+            }
+    
+            if (!/^[\w\.-]+@[\w\.-]+\.\w+$/.test(emailField.value.trim())) {
+                emailField.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                emailField.classList.remove('is-invalid');
+            }
+    
+            if (!/^\d{10}$/.test(mobileField.value.trim())) {
+                mobileField.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                mobileField.classList.remove('is-invalid');
+            }
+    
+     
+    
+            if (!isValid) {
+                event.preventDefault(); 
+            } else {
+                alert('Form submitted successfully!');
+            }
+        });
+    </script>
+</body>
+</html>

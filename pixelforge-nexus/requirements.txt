@@ -1,0 +1,167 @@
+# PixelForge Nexus - System Requirements
+
+# =============================================================================
+# SYSTEM REQUIREMENTS
+# =============================================================================
+
+# Node.js and npm
+Node.js >= 18.0.0
+npm >= 8.0.0
+
+# Database
+PostgreSQL >= 14.0
+
+# Optional (for containerization)
+Docker >= 20.0.0
+Docker Compose >= 2.0.0
+
+# =============================================================================
+# BACKEND DEPENDENCIES (Node.js/npm)
+# =============================================================================
+
+# Core Framework
+express@^4.18.2
+typescript@^5.3.3
+ts-node@^10.9.1
+
+# Database & ORM
+@prisma/client@^5.7.1
+prisma@^5.7.1
+
+# Authentication & Security
+bcryptjs@^2.4.3
+jsonwebtoken@^9.0.2
+speakeasy@^2.0.0
+
+# Security Middleware
+helmet@^7.1.0
+cors@^2.8.5
+express-rate-limit@^7.1.5
+express-validator@^7.0.1
+express-mongo-sanitize@^2.2.0
+hpp@^0.2.3
+
+# File Upload
+multer@^1.4.5-lts.1
+
+# Utilities
+compression@^1.7.4
+morgan@^1.10.0
+dotenv@^16.3.1
+
+# Development & Testing
+nodemon@^3.0.2
+jest@^29.7.0
+supertest@^6.3.3
+eslint@^8.55.0
+prettier@^3.1.0
+
+# =============================================================================
+# FRONTEND DEPENDENCIES (React/npm)
+# =============================================================================
+
+# Core Framework
+react@^18.2.0
+react-dom@^18.2.0
+react-router-dom@^6.20.1
+
+# TypeScript
+typescript@^4.9.5
+@types/react@^18.2.45
+@types/react-dom@^18.2.18
+
+# HTTP Client
+axios@^1.6.2
+
+# UI & Styling
+tailwindcss@^3.3.6
+@tailwindcss/forms@^0.5.7
+
+# Notifications
+react-hot-toast@^2.4.1
+
+# Development Tools
+react-scripts@5.0.1
+eslint@^8.55.0
+prettier@^3.1.0
+
+# Testing
+@testing-library/react@^13.4.0
+@testing-library/jest-dom@^6.1.5
+@testing-library/user-event@^14.5.1
+
+# =============================================================================
+# DEVELOPMENT TOOLS
+# =============================================================================
+
+# Code Quality
+ESLint >= 8.0.0
+Prettier >= 3.0.0
+TypeScript >= 4.9.0
+
+# Security Scanning
+npm audit
+Snyk (optional)
+
+# =============================================================================
+# PRODUCTION REQUIREMENTS
+# =============================================================================
+
+# Web Server
+Nginx >= 1.20.0 (recommended for production)
+
+# Process Manager
+PM2 >= 5.0.0 (for Node.js process management)
+
+# SSL/TLS
+Let's Encrypt or valid SSL certificates
+
+# Monitoring (Optional)
+Prometheus
+Grafana
+Sentry
+
+# =============================================================================
+# INSTALLATION COMMANDS
+# =============================================================================
+
+# Install Node.js dependencies
+cd backend && npm install
+cd frontend && npm install
+
+# Setup database
+cd backend && npx prisma migrate dev && npx prisma generate && npm run db:seed
+
+# Start development servers
+npm run dev (from root directory)
+# OR
+cd backend && npm run dev (in one terminal)
+cd frontend && npm start (in another terminal)
+
+# =============================================================================
+# DOCKER REQUIREMENTS (Alternative Setup)
+# =============================================================================
+
+# If using Docker, only need:
+Docker >= 20.0.0
+Docker Compose >= 2.0.0
+
+# Then run:
+docker-compose up -d
+
+# =============================================================================
+# MINIMUM SYSTEM SPECIFICATIONS
+# =============================================================================
+
+# Development Environment
+RAM: 8GB minimum, 16GB recommended
+CPU: 4 cores minimum
+Storage: 10GB free space
+OS: Windows 10/11, macOS 10.15+, Ubuntu 18.04+
+
+# Production Environment
+RAM: 4GB minimum, 8GB recommended
+CPU: 2 cores minimum, 4 cores recommended
+Storage: 20GB free space
+Network: Stable internet connection
+SSL: Valid SSL certificate for HTTPS

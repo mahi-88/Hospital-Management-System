@@ -1,0 +1,57 @@
+{
+  "name": "network-packet-visualizer-frontend",
+  "version": "1.0.0",
+  "description": "Vue.js frontend for Network Packet Visualizer",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "pinia": "^2.1.6",
+    "axios": "^1.5.0",
+    "@microsoft/signalr": "^7.0.10",
+    "d3": "^7.8.5",
+    "chart.js": "^4.4.0",
+    "vue-chartjs": "^5.2.0",
+    "tailwindcss": "^3.3.3",
+    "@headlessui/vue": "^1.7.16",
+    "@heroicons/vue": "^2.0.18",
+    "socket.io-client": "^4.7.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.4",
+    "@vue/test-utils": "^2.4.1",
+    "jsdom": "^22.1.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "prettier": "^3.0.3",
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.29",
+    "typescript": "^5.2.2",
+    "@types/d3": "^7.4.0",
+    "@types/lodash": "^4.14.197"
+  },
+  "keywords": [
+    "network",
+    "packet",
+    "visualizer",
+    "osi",
+    "vue",
+    "networking",
+    "simulation"
+  ],
+  "author": "Mahi",
+  "license": "MIT"
+}

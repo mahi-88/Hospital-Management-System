@@ -1,0 +1,405 @@
+name: Job Application Tracker CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: '18.x'
+  POSTGRES_VERSION: '14'
+
+jobs:
+  # Backend Tests
+  backend-test:
+    runs-on: ubuntu-latest
+    name: Backend Tests & Build
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: job_tracker_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: backend/package-lock.json
+
+    - name: Install backend dependencies
+      working-directory: ./backend
+      run: npm ci
+
+    - name: Run backend linting
+      working-directory: ./backend
+      run: npm run lint
+
+    - name: Run backend tests
+      working-directory: ./backend
+      run: npm run test:coverage
+      env:
+        NODE_ENV: test
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/job_tracker_test
+        JWT_SECRET: test-secret-key
+
+    - name: Upload backend coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./backend/coverage/lcov.info
+        flags: backend
+        name: backend-coverage
+
+    - name: Build backend
+      working-directory: ./backend
+      run: npm run build
+
+    - name: Upload backend build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: backend-build
+        path: backend/dist/
+
+  # Frontend Tests
+  frontend-test:
+    runs-on: ubuntu-latest
+    name: Frontend Tests & Build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json
+
+    - name: Install frontend dependencies
+      working-directory: ./frontend
+      run: npm ci
+
+    - name: Run frontend linting
+      working-directory: ./frontend
+      run: npm run lint
+
+    - name: Run frontend unit tests
+      working-directory: ./frontend
+      run: npm run test:unit -- --coverage
+      env:
+        CI: true
+
+    - name: Upload frontend coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./frontend/coverage/lcov.info
+        flags: frontend
+        name: frontend-coverage
+
+    - name: Build frontend
+      working-directory: ./frontend
+      run: npm run build
+      env:
+        VUE_APP_API_URL: ${{ secrets.VUE_APP_API_URL || 'http://localhost:3000/api' }}
+
+    - name: Upload frontend build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: frontend-build
+        path: frontend/dist/
+
+  # E2E Tests
+  e2e-tests:
+    runs-on: ubuntu-latest
+    name: End-to-End Tests
+    needs: [backend-test, frontend-test]
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: job_tracker_e2e
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Download backend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: backend-build
+        path: backend/dist/
+
+    - name: Download frontend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: frontend-build
+        path: frontend/dist/
+
+    - name: Install dependencies
+      run: |
+        cd backend && npm ci
+        cd ../frontend && npm ci
+
+    - name: Start backend server
+      working-directory: ./backend
+      run: |
+        npm start &
+        sleep 10
+      env:
+        NODE_ENV: test
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/job_tracker_e2e
+        JWT_SECRET: test-secret-key
+        PORT: 3000
+
+    - name: Start frontend server
+      working-directory: ./frontend
+      run: |
+        npm run serve &
+        sleep 10
+      env:
+        VUE_APP_API_URL: http://localhost:3000/api
+
+    - name: Run Cypress E2E tests
+      working-directory: ./frontend
+      run: npm run test:e2e:headless
+      env:
+        CYPRESS_baseUrl: http://localhost:8080
+
+    - name: Upload E2E test videos
+      uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: cypress-videos
+        path: frontend/tests/e2e/videos/
+
+  # Security Scanning
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Security Scan
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+    - name: Run npm audit (Backend)
+      working-directory: ./backend
+      run: npm audit --audit-level moderate
+
+    - name: Run npm audit (Frontend)
+      working-directory: ./frontend
+      run: npm audit --audit-level moderate
+
+  # Code Quality Analysis
+  code-quality:
+    runs-on: ubuntu-latest
+    name: Code Quality Analysis
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Install dependencies
+      run: |
+        cd backend && npm ci
+        cd ../frontend && npm ci
+
+    - name: Run SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  # Deploy to Staging
+  deploy-staging:
+    runs-on: ubuntu-latest
+    name: Deploy to Staging
+    needs: [backend-test, frontend-test, e2e-tests, security-scan]
+    if: github.ref == 'refs/heads/develop'
+
+    environment:
+      name: staging
+      url: https://job-tracker-staging.herokuapp.com
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download backend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: backend-build
+        path: backend/dist/
+
+    - name: Download frontend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: frontend-build
+        path: frontend/dist/
+
+    - name: Deploy to Heroku (Backend)
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: job-tracker-api-staging
+        heroku_email: ${{ secrets.HEROKU_EMAIL }}
+        appdir: backend
+
+    - name: Deploy to Netlify (Frontend)
+      uses: nwtgck/actions-netlify@v2.0
+      with:
+        publish-dir: './frontend/dist'
+        production-branch: develop
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions"
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_STAGING }}
+
+  # Deploy to Production
+  deploy-production:
+    runs-on: ubuntu-latest
+    name: Deploy to Production
+    needs: [backend-test, frontend-test, e2e-tests, security-scan]
+    if: github.ref == 'refs/heads/main'
+
+    environment:
+      name: production
+      url: https://job-tracker.herokuapp.com
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download backend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: backend-build
+        path: backend/dist/
+
+    - name: Download frontend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: frontend-build
+        path: frontend/dist/
+
+    - name: Deploy to Heroku (Backend)
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: job-tracker-api-prod
+        heroku_email: ${{ secrets.HEROKU_EMAIL }}
+        appdir: backend
+
+    - name: Deploy to Netlify (Frontend)
+      uses: nwtgck/actions-netlify@v2.0
+      with:
+        publish-dir: './frontend/dist'
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Production deployment from GitHub Actions"
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_PROD }}
+
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release v${{ github.run_number }}
+        body: |
+          ## 🚀 Production Release v${{ github.run_number }}
+          
+          ### ✨ Features & Improvements
+          - Enhanced job application tracking with advanced filtering
+          - JWT authentication and secure user management
+          - Real-time search and sorting capabilities
+          - Comprehensive testing coverage
+          - Modern UI with Tailwind CSS
+          
+          ### 🔧 Technical Updates
+          - Backend: Node.js + TypeScript + PostgreSQL
+          - Frontend: Vue.js + TypeScript + Tailwind CSS
+          - Testing: Jest + Cypress + 90%+ coverage
+          - Security: Vulnerability scanning + JWT auth
+          
+          ### 🌐 Deployment
+          - Frontend: https://job-tracker.netlify.app
+          - Backend API: https://job-tracker-api-prod.herokuapp.com
+          - Documentation: https://github.com/mahi-88/job-application-tracker
+          
+          **Build #${{ github.run_number }}** | **Commit:** ${{ github.sha }}
+        draft: false
+        prerelease: false
+
+  # Notification
+  notify:
+    runs-on: ubuntu-latest
+    name: Notify Deployment
+    needs: [deploy-production]
+    if: always()
+
+    steps:
+    - name: Notify Success
+      if: needs.deploy-production.result == 'success'
+      run: |
+        echo "✅ Deployment successful!"
+        echo "🌐 Application: https://job-tracker.netlify.app"
+        echo "📚 API: https://job-tracker-api-prod.herokuapp.com"
+
+    - name: Notify Failure
+      if: needs.deploy-production.result == 'failure'
+      run: |
+        echo "❌ Deployment failed!"
+        echo "Please check the logs for details."

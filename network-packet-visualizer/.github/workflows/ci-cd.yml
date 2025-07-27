@@ -1,0 +1,306 @@
+name: Network Packet Visualizer CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: '18.x'
+  DOTNET_VERSION: '6.0.x'
+
+jobs:
+  # Frontend Build and Test
+  frontend-test:
+    runs-on: ubuntu-latest
+    name: Frontend Tests
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json
+        
+    - name: Install frontend dependencies
+      working-directory: ./frontend
+      run: npm ci
+      
+    - name: Run frontend linting
+      working-directory: ./frontend
+      run: npm run lint
+      
+    - name: Run frontend tests
+      working-directory: ./frontend
+      run: npm run test
+      
+    - name: Build frontend
+      working-directory: ./frontend
+      run: npm run build
+      
+    - name: Upload frontend build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: frontend-build
+        path: frontend/dist/
+
+  # Backend Build and Test
+  backend-test:
+    runs-on: ubuntu-latest
+    name: Backend Tests
+    
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          SA_PASSWORD: YourStrong@Passw0rd
+          ACCEPT_EULA: Y
+        ports:
+          - 1433:1433
+        options: >-
+          --health-cmd="/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong@Passw0rd -Q 'SELECT 1'"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Restore backend dependencies
+      working-directory: ./backend
+      run: dotnet restore
+      
+    - name: Build backend
+      working-directory: ./backend
+      run: dotnet build --no-restore --configuration Release
+      
+    - name: Run backend tests
+      working-directory: ./backend
+      run: dotnet test --no-build --configuration Release --verbosity normal
+      env:
+        ConnectionStrings__DefaultConnection: "Server=localhost,1433;Database=NetworkPacketVisualizerTest;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;"
+        
+    - name: Publish backend
+      working-directory: ./backend
+      run: dotnet publish --no-build --configuration Release --output ./publish
+      
+    - name: Upload backend build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: backend-build
+        path: backend/publish/
+
+  # Security Scanning
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Security Scan
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  # Code Quality Analysis
+  code-quality:
+    runs-on: ubuntu-latest
+    name: Code Quality Analysis
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: Install SonarCloud scanner
+      run: dotnet tool install --global dotnet-sonarscanner
+      
+    - name: Build and analyze
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        dotnet-sonarscanner begin /k:"mahi-88_network-packet-visualizer" /o:"mahi-88" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+        dotnet build backend/NetworkPacketVisualizer.csproj --configuration Release
+        dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
+  # Integration Tests
+  integration-tests:
+    runs-on: ubuntu-latest
+    name: Integration Tests
+    needs: [frontend-test, backend-test]
+    
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          SA_PASSWORD: YourStrong@Passw0rd
+          ACCEPT_EULA: Y
+        ports:
+          - 1433:1433
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: Download frontend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: frontend-build
+        path: frontend/dist/
+        
+    - name: Download backend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: backend-build
+        path: backend/publish/
+        
+    - name: Setup database
+      run: |
+        sqlcmd -S localhost,1433 -U sa -P YourStrong@Passw0rd -i database/schema.sql
+      
+    - name: Run integration tests
+      working-directory: ./tests/integration
+      run: |
+        npm install
+        npm run test:integration
+      env:
+        API_BASE_URL: http://localhost:5000
+        DB_CONNECTION_STRING: "Server=localhost,1433;Database=NetworkPacketVisualizerTest;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;"
+
+  # Deploy to Staging
+  deploy-staging:
+    runs-on: ubuntu-latest
+    name: Deploy to Staging
+    needs: [integration-tests, security-scan, code-quality]
+    if: github.ref == 'refs/heads/develop'
+    
+    environment:
+      name: staging
+      url: https://network-visualizer-staging.azurewebsites.net
+    
+    steps:
+    - name: Download frontend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: frontend-build
+        path: frontend-build/
+        
+    - name: Download backend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: backend-build
+        path: backend-build/
+        
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'network-visualizer-staging'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_STAGING }}
+        package: backend-build/
+        
+    - name: Deploy frontend to Azure Storage
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az storage blob upload-batch --account-name networkvisualizerstaging --auth-mode key --destination '$web' --source frontend-build/
+
+  # Deploy to Production
+  deploy-production:
+    runs-on: ubuntu-latest
+    name: Deploy to Production
+    needs: [integration-tests, security-scan, code-quality]
+    if: github.ref == 'refs/heads/main'
+    
+    environment:
+      name: production
+      url: https://network-visualizer.azurewebsites.net
+    
+    steps:
+    - name: Download frontend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: frontend-build
+        path: frontend-build/
+        
+    - name: Download backend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: backend-build
+        path: backend-build/
+        
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'network-visualizer-prod'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_PROD }}
+        package: backend-build/
+        
+    - name: Deploy frontend to Azure Storage
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az storage blob upload-batch --account-name networkvisualizerprod --auth-mode key --destination '$web' --source frontend-build/
+          
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release v${{ github.run_number }}
+        body: |
+          ## Changes in this Release
+          - Automated deployment from main branch
+          - Build #${{ github.run_number }}
+          
+          ## Deployment Information
+          - Frontend: https://network-visualizer.azurewebsites.net
+          - API Documentation: https://network-visualizer.azurewebsites.net/api/docs
+        draft: false
+        prerelease: false

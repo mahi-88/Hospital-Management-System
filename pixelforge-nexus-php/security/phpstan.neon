@@ -1,0 +1,133 @@
+# PHPStan Configuration for PixelForge Nexus Security Analysis
+# Static analysis for code correctness and security vulnerabilities
+
+parameters:
+    level: 8
+    paths:
+        - app/
+        - tests/
+    
+    # Exclude vendor and generated files
+    excludePaths:
+        - vendor/
+        - storage/
+        - bootstrap/cache/
+        - node_modules/
+    
+    # Security-focused rules
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    checkMissingCallableSignature: true
+    checkMissingVarDocTypeHint: true
+    checkArgumentsPassedByReference: true
+    checkMaybeUndefinedVariables: true
+    checkNullables: true
+    checkThisOnly: true
+    checkUnionTypes: true
+    checkExplicitMixed: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    
+    # Security-specific checks
+    reportUnmatchedIgnoredErrors: true
+    treatPhpDocTypesAsCertain: false
+    
+    # Custom rules for security
+    customRulesetUsed: true
+    
+    # Ignore patterns for known safe code
+    ignoreErrors:
+        # Allow dynamic property access in specific contexts
+        - '#Access to an undefined property#'
+        # Allow mixed types in legacy code (to be refactored)
+        - '#Parameter .* of .* has no typehint specified#'
+    
+    # Bootstrap files
+    bootstrapFiles:
+        - bootstrap/app.php
+    
+    # Extensions for enhanced security analysis
+    includes:
+        - vendor/phpstan/phpstan-strict-rules/rules.neon
+        - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    
+    # Memory limit for large codebase analysis
+    memoryLimitFile: .phpstan-memory-limit
+    
+    # Parallel processing
+    parallel:
+        jobSize: 20
+        maximumNumberOfProcesses: 32
+        minimumNumberOfJobsPerProcess: 2
+    
+    # Security-focused type checking
+    checkAlwaysTrueCheckTypeFunctionCall: true
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    checkClassCaseSensitivity: true
+    checkFunctionArgumentTypes: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    checkMissingTypehints: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkUninitializedProperties: true
+    checkDynamicProperties: true
+    
+    # SQL injection prevention checks
+    sqlQueryBuilderChain: true
+    
+    # File inclusion security
+    checkPhpDocMissingReturn: true
+    checkPhpDocMethodSignatures: true
+    
+    # Error reporting
+    errorFormat: table
+    
+    # Cache configuration
+    tmpDir: storage/phpstan
+    
+    # Custom security rules
+    rules:
+        # Prevent dangerous functions
+        - 'PHPStan\Rules\Functions\CallToFunctionParametersRule'
+        - 'PHPStan\Rules\Functions\ExistingFunctionInCallRule'
+        
+        # Prevent SQL injection
+        - 'PHPStan\Rules\Database\QueryBuilderRule'
+        
+        # Prevent XSS
+        - 'PHPStan\Rules\Security\OutputEscapingRule'
+        
+        # Prevent CSRF
+        - 'PHPStan\Rules\Security\CSRFTokenRule'
+    
+    # Stub files for better analysis
+    stubFiles:
+        - stubs/security.stub
+    
+    # Type aliases for security contexts
+    typeAliases:
+        SanitizedString: 'string'
+        ValidatedInput: 'array<string, mixed>'
+        SecureToken: 'string'
+        HashedPassword: 'string'
+    
+    # Conditional tags for security analysis
+    conditionalTags:
+        PHPStan\Rules\Security\SecurityRule:
+            phpstan.rules.rule: true
+    
+    # Services for custom security rules
+    services:
+        -
+            class: PHPStan\Rules\Security\SqlInjectionRule
+            tags:
+                - phpstan.rules.rule
+        -
+            class: PHPStan\Rules\Security\XssPreventionRule
+            tags:
+                - phpstan.rules.rule
+        -
+            class: PHPStan\Rules\Security\FileUploadRule
+            tags:
+                - phpstan.rules.rule

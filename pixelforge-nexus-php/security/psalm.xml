@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="1"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="true"
+    findUnusedVariablesAndParams="true"
+    checkForThrowsDocblock="true"
+    checkForThrowsInGlobalScope="true"
+    ensureArrayStringOffsetsExist="true"
+    ensureArrayIntOffsetsExist="true"
+    reportMixedIssues="true"
+    strictBinaryOperands="true"
+    requireVoidReturnType="true"
+    usePhpDocMethodsWithoutMagicCall="true"
+    memoizeMethodCallResults="true"
+    hoistConstants="true"
+    addParamTypehints="true"
+    addReturnTypehints="true"
+    addVoidReturnTypeWhereApplicable="true"
+    hideExternalErrors="false"
+>
+    <projectFiles>
+        <directory name="app" />
+        <directory name="tests" />
+        <ignoreFiles>
+            <directory name="vendor" />
+            <directory name="storage" />
+            <directory name="bootstrap/cache" />
+            <directory name="node_modules" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <!-- Security-focused taint analysis -->
+    <taintAnalysis>
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+        
+        <!-- Define taint sources (user input) -->
+        <sources>
+            <!-- HTTP input sources -->
+            <source>
+                <code><![CDATA[$_GET]]></code>
+            </source>
+            <source>
+                <code><![CDATA[$_POST]]></code>
+            </source>
+            <source>
+                <code><![CDATA[$_REQUEST]]></code>
+            </source>
+            <source>
+                <code><![CDATA[$_COOKIE]]></code>
+            </source>
+            <source>
+                <code><![CDATA[$_SERVER]]></code>
+            </source>
+            <source>
+                <code><![CDATA[file_get_contents]]></code>
+            </source>
+            
+            <!-- Database input sources -->
+            <source>
+                <code><![CDATA[PDO::query]]></code>
+            </source>
+            <source>
+                <code><![CDATA[mysqli_query]]></code>
+            </source>
+            
+            <!-- File upload sources -->
+            <source>
+                <code><![CDATA[$_FILES]]></code>
+            </source>
+        </sources>
+
+        <!-- Define taint sinks (dangerous functions) -->
+        <sinks>
+            <!-- SQL injection sinks -->
+            <sink>
+                <code><![CDATA[PDO::query]]></code>
+                <taint>sql</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[mysqli_query]]></code>
+                <taint>sql</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[DB::raw]]></code>
+                <taint>sql</taint>
+            </sink>
+            
+            <!-- XSS sinks -->
+            <sink>
+                <code><![CDATA[echo]]></code>
+                <taint>html</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[print]]></code>
+                <taint>html</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[printf]]></code>
+                <taint>html</taint>
+            </sink>
+            
+            <!-- Command injection sinks -->
+            <sink>
+                <code><![CDATA[exec]]></code>
+                <taint>shell</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[system]]></code>
+                <taint>shell</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[shell_exec]]></code>
+                <taint>shell</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[passthru]]></code>
+                <taint>shell</taint>
+            </sink>
+            
+            <!-- File inclusion sinks -->
+            <sink>
+                <code><![CDATA[include]]></code>
+                <taint>include</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[require]]></code>
+                <taint>include</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[include_once]]></code>
+                <taint>include</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[require_once]]></code>
+                <taint>include</taint>
+            </sink>
+            
+            <!-- File system sinks -->
+            <sink>
+                <code><![CDATA[file_put_contents]]></code>
+                <taint>file</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[fwrite]]></code>
+                <taint>file</taint>
+            </sink>
+            <sink>
+                <code><![CDATA[unlink]]></code>
+                <taint>file</taint>
+            </sink>
+        </sinks>
+
+        <!-- Define sanitizers (functions that clean tainted data) -->
+        <sanitizers>
+            <!-- HTML sanitizers -->
+            <sanitizer>
+                <code><![CDATA[htmlspecialchars]]></code>
+                <taint>html</taint>
+            </sanitizer>
+            <sanitizer>
+                <code><![CDATA[htmlentities]]></code>
+                <taint>html</taint>
+            </sanitizer>
+            <sanitizer>
+                <code><![CDATA[strip_tags]]></code>
+                <taint>html</taint>
+            </sanitizer>
+            
+            <!-- SQL sanitizers -->
+            <sanitizer>
+                <code><![CDATA[PDO::quote]]></code>
+                <taint>sql</taint>
+            </sanitizer>
+            <sanitizer>
+                <code><![CDATA[mysqli_real_escape_string]]></code>
+                <taint>sql</taint>
+            </sanitizer>
+            
+            <!-- Shell sanitizers -->
+            <sanitizer>
+                <code><![CDATA[escapeshellarg]]></code>
+                <taint>shell</taint>
+            </sanitizer>
+            <sanitizer>
+                <code><![CDATA[escapeshellcmd]]></code>
+                <taint>shell</taint>
+            </sanitizer>
+            
+            <!-- File path sanitizers -->
+            <sanitizer>
+                <code><![CDATA[basename]]></code>
+                <taint>file</taint>
+            </sanitizer>
+            <sanitizer>
+                <code><![CDATA[realpath]]></code>
+                <taint>file</taint>
+            </sanitizer>
+            
+            <!-- Custom sanitizers -->
+            <sanitizer>
+                <code><![CDATA[Leantime\Core\Security\Sanitizer::sanitizeInput]]></code>
+                <taint>html</taint>
+            </sanitizer>
+            <sanitizer>
+                <code><![CDATA[Leantime\Core\Security\Sanitizer::sanitizeSQL]]></code>
+                <taint>sql</taint>
+            </sanitizer>
+        </sanitizers>
+    </taintAnalysis>
+
+    <!-- Plugin configurations for enhanced security analysis -->
+    <plugins>
+        <pluginClass class="Psalm\Plugin\Shepherd\ShepherdPlugin"/>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+    </plugins>
+
+    <!-- Issue handlers for security-specific issues -->
+    <issueHandlers>
+        <!-- Taint analysis issues -->
+        <TaintedInput errorLevel="error" />
+        <TaintedSql errorLevel="error" />
+        <TaintedHtml errorLevel="error" />
+        <TaintedShell errorLevel="error" />
+        <TaintedFile errorLevel="error" />
+        <TaintedInclude errorLevel="error" />
+        
+        <!-- Type safety issues -->
+        <MixedAssignment errorLevel="error" />
+        <MixedArgument errorLevel="error" />
+        <MixedReturnStatement errorLevel="error" />
+        <MixedInferredReturnType errorLevel="error" />
+        <MixedStringOffsetAssignment errorLevel="error" />
+        <MixedArrayAccess errorLevel="error" />
+        <MixedArrayAssignment errorLevel="error" />
+        <MixedArrayOffset errorLevel="error" />
+        <MixedPropertyFetch errorLevel="error" />
+        <MixedPropertyAssignment errorLevel="error" />
+        <MixedMethodCall errorLevel="error" />
+        
+        <!-- Null safety issues -->
+        <PossiblyNullReference errorLevel="error" />
+        <PossiblyNullArgument errorLevel="error" />
+        <PossiblyNullArrayAccess errorLevel="error" />
+        <PossiblyNullArrayAssignment errorLevel="error" />
+        <PossiblyNullArrayOffset errorLevel="error" />
+        <PossiblyNullFunctionCall errorLevel="error" />
+        <PossiblyNullIterator errorLevel="error" />
+        <PossiblyNullOperand errorLevel="error" />
+        <PossiblyNullPropertyAssignment errorLevel="error" />
+        <PossiblyNullPropertyFetch errorLevel="error" />
+        
+        <!-- Undefined variable issues -->
+        <UndefinedVariable errorLevel="error" />
+        <UndefinedGlobalVariable errorLevel="error" />
+        <UndefinedPropertyFetch errorLevel="error" />
+        <UndefinedPropertyAssignment errorLevel="error" />
+        <UndefinedMethod errorLevel="error" />
+        <UndefinedFunction errorLevel="error" />
+        <UndefinedClass errorLevel="error" />
+        <UndefinedConstant errorLevel="error" />
+        
+        <!-- Security-related issues -->
+        <ForbiddenCode errorLevel="error" />
+        <UnresolvableInclude errorLevel="error" />
+        <InvalidScalarArgument errorLevel="error" />
+        <InvalidOperand errorLevel="error" />
+        <InvalidArrayOffset errorLevel="error" />
+        <InvalidArrayAssignment errorLevel="error" />
+        <InvalidClone errorLevel="error" />
+        <InvalidFunctionCall errorLevel="error" />
+        <InvalidMethodCall errorLevel="error" />
+        <InvalidPropertyAssignment errorLevel="error" />
+        <InvalidPropertyFetch errorLevel="error" />
+        <InvalidReturnStatement errorLevel="error" />
+        <InvalidReturnType errorLevel="error" />
+        <InvalidThrow errorLevel="error" />
+        <InvalidCast errorLevel="error" />
+        
+        <!-- Suppress less critical issues in specific contexts -->
+        <PropertyNotSetInConstructor errorLevel="info" />
+        <MissingConstructor errorLevel="info" />
+        <UnusedVariable errorLevel="info" />
+        <UnusedParam errorLevel="info" />
+        <UnusedProperty errorLevel="info" />
+        <UnusedMethod errorLevel="info" />
+        <UnusedClass errorLevel="info" />
+        
+        <!-- Allow some flexibility for framework code -->
+        <MissingReturnType errorLevel="info" />
+        <MissingParamType errorLevel="info" />
+        <MissingPropertyType errorLevel="info" />
+    </issueHandlers>
+
+    <!-- Stubs for better analysis of external libraries -->
+    <stubs>
+        <file name="stubs/laravel.phpstub" />
+        <file name="stubs/security.phpstub" />
+    </stubs>
+
+    <!-- Mock classes for testing -->
+    <mockClasses>
+        <class name="Mockery\MockInterface" />
+        <class name="PHPUnit\Framework\MockObject\MockObject" />
+    </mockClasses>
+
+    <!-- Baseline file to track existing issues -->
+    <baseline>psalm-baseline.xml</baseline>
+
+    <!-- Cache directory -->
+    <cacheDirectory>storage/psalm</cacheDirectory>
+
+    <!-- Include Composer autoloader -->
+    <autoloader>vendor/autoload.php</autoloader>
+</psalm>
